@@ -1,0 +1,180 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.dasannetworks.tms.sb">
+	<namespace>tms</namespace>
+
+	<entity name="Book" local-service="true" remote-service="true">
+		<column name="bookId" type="long" primary="true" id-type="increment"/>
+		<column name="bookName" type="String" />
+		<column name="description" type="String" />
+		<column name="authorName" type="String" />
+		<column name="isbn" type="int" />
+		<column name="price" type="int" />
+		
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoRow" />
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoTable" />
+		<reference package-path="com.liferay.portal" entity="ClassName" />
+	</entity>
+
+	<entity name="Device" local-service="true">
+
+		<!-- PK fields -->
+
+		<column name="deviceId" type="long" primary="true"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- Other fields -->
+
+		<column name="modelname" type="String"></column>
+		<column name="serialNumber" type="String"></column>
+		<column name="hardwareRevision" type="String"></column>
+		<column name="softwareRevision" type="String"></column>
+		<column name="manufactureSerial" type="String"></column>
+		<column name="macAddress" type="String"></column>
+		<column name="partNumber" type="String"></column>
+		<column name="specification" type="String"></column>
+		<column name="factoryOut" type="Date"></column>
+
+		<column name="uploadFileId" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="UploadFileId" return-type="Collection">
+			<finder-column name="uploadFileId" />
+		</finder>
+	</entity>
+
+	<entity name="Feedback"
+		uuid="true"
+		local-service="true"
+		remote-service="true">
+
+		<column name="feedbackId" type="long" primary="true" />
+		<column name="feedbackDate" type="Date" />
+		<column name="feedbackText" type="String" />
+		<column name="feedbackSubject" type="String" />
+		<column name="feedBackStatus" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusDate" type="Date" />
+		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
+		<column name="userId" type="long" />
+
+		<order>
+			<order-column name="feedbackId" order-by="asc" />
+			<order-column name="feedbackDate" order-by="desc" />
+		</order>
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="feedbackText" return-type="Collection">
+			<finder-column name="feedbackText" />
+		</finder>
+		<finder name="G_S" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="feedBackStatus" />
+		</finder>
+
+		<reference package-path="com.liferay.portal" entity="User" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+		<reference package-path="com.liferay.portal" entity="WorkflowDefinitionLink"></reference>
+		<reference package-path="com.liferay.portal" entity="WorkflowInstanceLink"></reference>
+		
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoRow" />
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoTable" />
+		<reference package-path="com.liferay.portal" entity="ClassName" />
+	</entity>
+
+	<entity name="Contact" uuid="true" local-service="true"
+		remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="firstname" type="String" />
+		<column name="lastname" type="String" />
+		<column name="telephone" type="String" />
+		<column name="email" type="String"></column>
+	</entity>
+
+	<entity name="Student" uuid="true" local-service="true"
+		remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="studentId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="firstname" type="String" />
+		<column name="lastName" type="String" />
+		<column name="branch" type="String" />
+		<column name="age" type="int" />
+		<column name="email" type="String"></column>
+	</entity>
+
+	<entity name="Foo" uuid="true" local-service="true"
+		remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="fooId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="field1" type="String" />
+		<column name="field2" type="boolean" />
+		<column name="field3" type="int" />
+		<column name="field4" type="Date" />
+		<column name="field5" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="field1" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Field2" return-type="Collection">
+			<finder-column name="field2" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
+	</entity>
+</service-builder>

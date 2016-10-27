@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.dasannetworks.tms.sb.model.Book" />
+	<import class="com.dasannetworks.tms.sb.model.Contact" />
+	<import class="com.dasannetworks.tms.sb.model.Device" />
+	<import class="com.dasannetworks.tms.sb.model.Feedback" />
+	<import class="com.dasannetworks.tms.sb.model.Foo" />
+	<import class="com.dasannetworks.tms.sb.model.Student" />
+	<class name="com.dasannetworks.tms.sb.model.impl.BookImpl" table="tms_Book">
+		<cache usage="read-write" />
+		<id name="bookId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="bookName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="authorName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="isbn" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="price" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.dasannetworks.tms.sb.model.impl.ContactImpl" table="tms_Contact">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="firstname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="telephone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.dasannetworks.tms.sb.model.impl.DeviceImpl" table="tms_Device">
+		<cache usage="read-write" />
+		<id name="deviceId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modelname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="serialNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hardwareRevision" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="softwareRevision" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="manufactureSerial" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="macAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="partNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="specification" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="factoryOut" type="org.hibernate.type.TimestampType" />
+		<property name="uploadFileId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.dasannetworks.tms.sb.model.impl.FeedbackImpl" table="tms_Feedback">
+		<cache usage="read-write" />
+		<id name="feedbackId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="feedbackDate" type="org.hibernate.type.TimestampType" />
+		<property name="feedbackText" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="feedbackSubject" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="feedBackStatus" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.dasannetworks.tms.sb.model.impl.FooImpl" table="tms_Foo">
+		<cache usage="read-write" />
+		<id name="fooId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="field1" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="field2" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="field3" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="field4" type="org.hibernate.type.TimestampType" />
+		<property name="field5" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.dasannetworks.tms.sb.model.impl.StudentImpl" table="tms_Student">
+		<cache usage="read-write" />
+		<id name="studentId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="firstname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="branch" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="age" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

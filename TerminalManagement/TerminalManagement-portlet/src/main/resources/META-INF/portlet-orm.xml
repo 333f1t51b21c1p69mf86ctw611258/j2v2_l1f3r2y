@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.dasannetworks.tms.sb.model.impl.BookModelImpl">
+		<attributes>
+			<id name="bookId" />
+			<basic name="bookName" />
+			<basic name="description" />
+			<basic name="authorName" />
+			<basic name="isbn" />
+			<basic name="price" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.tms.sb.model.impl.ContactModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="firstname" />
+			<basic name="lastname" />
+			<basic name="telephone" />
+			<basic name="email" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.tms.sb.model.impl.DeviceModelImpl">
+		<attributes>
+			<id name="deviceId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modelname" />
+			<basic name="serialNumber" />
+			<basic name="hardwareRevision" />
+			<basic name="softwareRevision" />
+			<basic name="manufactureSerial" />
+			<basic name="macAddress" />
+			<basic name="partNumber" />
+			<basic name="specification" />
+			<basic name="factoryOut">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="uploadFileId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.tms.sb.model.impl.FeedbackModelImpl">
+		<attributes>
+			<id name="feedbackId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="feedbackDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="feedbackText" />
+			<basic name="feedbackSubject" />
+			<basic name="feedBackStatus" />
+			<basic name="statusByUserId" />
+			<basic name="statusDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="companyId" />
+			<basic name="groupId" />
+			<basic name="userId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="statusByUserUuid" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.tms.sb.model.impl.FooModelImpl">
+		<attributes>
+			<id name="fooId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="field1" />
+			<basic name="field2" />
+			<basic name="field3" />
+			<basic name="field4">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="field5" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.tms.sb.model.impl.StudentModelImpl">
+		<attributes>
+			<id name="studentId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="firstname" />
+			<basic name="lastName" />
+			<basic name="branch" />
+			<basic name="age" />
+			<basic name="email" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.dasannetworks.tms.sb.model.impl.BookImpl" name="Book">
+		<table name="tms_Book" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.tms.sb.model.impl.ContactImpl" name="Contact">
+		<table name="tms_Contact" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.tms.sb.model.impl.DeviceImpl" name="Device">
+		<table name="tms_Device" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.tms.sb.model.impl.FeedbackImpl" name="Feedback">
+		<table name="tms_Feedback" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.tms.sb.model.impl.FooImpl" name="Foo">
+		<table name="tms_Foo" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.tms.sb.model.impl.StudentImpl" name="Student">
+		<table name="tms_Student" />
+		<attributes />
+	</entity>
+</entity-mappings>
