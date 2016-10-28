@@ -5,7 +5,4 @@
 	<category name="category.sample">
 		<portlet id="tms" />
 	</category>
-	<category name="CustomField">
-		<portlet id="custom-field-demo" />
-	</category>
 </display>
