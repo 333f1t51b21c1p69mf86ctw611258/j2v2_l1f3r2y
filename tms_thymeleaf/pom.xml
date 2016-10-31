@@ -49,8 +49,13 @@
 		<liferay.app.server.deploy.dir>D:\Develop\Java\liferay\liferay-portal-6.2-ce-ga6\tomcat-7.0.62\webapps</liferay.app.server.deploy.dir>
 		<liferay.app.server.lib.global.dir>D:\Develop\Java\liferay\liferay-portal-6.2-ce-ga6\tomcat-7.0.62\lib\ext</liferay.app.server.lib.global.dir>
 		<liferay.app.server.portal.dir>D:\Develop\Java\liferay\liferay-portal-6.2-ce-ga6\tomcat-7.0.62\webapps\ROOT</liferay.app.server.portal.dir>
+	
+		<logback.version>1.1.2</logback.version>
 		
 		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
+		
+		<dandelion.version>1.1.1</dandelion.version>
+      	<dandelion-datatables.version>1.1.1</dandelion-datatables.version>
 	</properties>
 	
 	<modules>
