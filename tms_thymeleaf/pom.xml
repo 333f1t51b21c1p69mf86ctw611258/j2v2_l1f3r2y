@@ -53,9 +53,6 @@
 		<logback.version>1.1.2</logback.version>
 		
 		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
-		
-		<dandelion.version>1.1.1</dandelion.version>
-      	<dandelion-datatables.version>1.1.1</dandelion-datatables.version>
 	</properties>
 	
 	<modules>
