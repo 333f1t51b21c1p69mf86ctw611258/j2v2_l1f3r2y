@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.dasannetworks.vn.sb.model.Device">
+		<field name="deviceId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modelName" type="String" />
+		<field name="serialNumber" type="String" />
+		<field name="hardwareRevision" type="String" />
+		<field name="softwareRevision" type="String" />
+		<field name="manufacturerSerial" type="String" />
+		<field name="macAddress" type="String" />
+		<field name="partNumber" type="String" />
+		<field name="specification" type="String" />
+		<field name="factoryOut" type="Date" />
+		<field name="uploadFileId" type="long" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.UploadFile">
+		<field name="uploadFileId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="status" type="String" />
+		<field name="fileName" type="String" />
+	</model>
+</model-hints>
