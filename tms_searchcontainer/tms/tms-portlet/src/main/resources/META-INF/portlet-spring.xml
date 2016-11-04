@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.dasannetworks.vn.sb.service.ContactLocalService" class="com.dasannetworks.vn.sb.service.impl.ContactLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.ContactService" class="com.dasannetworks.vn.sb.service.impl.ContactServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.ContactPersistence" class="com.dasannetworks.vn.sb.service.persistence.ContactPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceLocalService" class="com.dasannetworks.vn.sb.service.impl.DeviceLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceService" class="com.dasannetworks.vn.sb.service.impl.DeviceServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.DevicePersistence" class="com.dasannetworks.vn.sb.service.persistence.DevicePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.PurchaseOrderLocalService" class="com.dasannetworks.vn.sb.service.impl.PurchaseOrderLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.PurchaseOrderService" class="com.dasannetworks.vn.sb.service.impl.PurchaseOrderServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.PurchaseOrderPersistence" class="com.dasannetworks.vn.sb.service.persistence.PurchaseOrderPersistenceImpl" parent="basePersistence" />
+</beans>
