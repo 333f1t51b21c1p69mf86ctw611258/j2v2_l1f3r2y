@@ -200,6 +200,7 @@ public class StudentController {
 		logger.info("getAllStudents()");
 		PrintWriter writer = null;
 		List<Student> studentList = null;
+		
 		try {
 			writer = response.getWriter();
 			// Fetch students
@@ -208,6 +209,7 @@ public class StudentController {
 		} catch (Exception e) {
 			logger.error("Error while getting all students", e);
 		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<StudentVO> studentVOList = StudentUtil.getStudentVOList(studentList);
 		map.put("aaData", studentVOList);
