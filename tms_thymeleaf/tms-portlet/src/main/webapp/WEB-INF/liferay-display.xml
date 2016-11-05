@@ -4,5 +4,7 @@
 <display>
 	<category name="category.sample">
 		<portlet id="tms" />
+		<portlet id="spring-portlet" />
+		<portlet id="thymeleaf-portlet" />
 	</category>
 </display>

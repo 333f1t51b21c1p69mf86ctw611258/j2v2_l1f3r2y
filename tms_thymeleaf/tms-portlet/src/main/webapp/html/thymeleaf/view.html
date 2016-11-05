@@ -1,0 +1,64 @@
+<div xmlns:th="http://www.thymeleaf.org">
+<!-- 	User ID  = <span th:text="${themeDisplay.getUserId()}">123</span> -->
+	
+	<br />
+	
+	<form action="#" th:action="${sampleActionURL}" method="post" th:object="${mySampleFormBean}">
+		myField: <input type="text" th:field="*{myField}" />
+		
+		<input type="submit" />
+	</form> 
+
+	<button onClick="ajaxGet()">Ajax Test</button>
+	
+	<div style="margin-top: 5px;">
+		<table class="table">
+		    <thead>
+		        <tr>
+		            <th>Description</th>
+		            <th>Price</th>
+		            <th>Available from</th>
+		        </tr>
+		    </thead>
+		    <tbody th:remove="all-but-first">
+		        <tr th:each="product : ${productList}">
+		            <td th:text="${product.description}">Red chair</td>
+		            <td th:text="${'$' + #numbers.formatDecimal(product.price, 1, 2)}">$350</td>
+		            <td th:text="${#dates.format(product.availableFrom, 'dd-MMM-yyyy')}">28-Jun-2013</td>
+		        </tr>
+		        <tr>
+		            <td>White table</td>
+		            <td>$200</td>
+		            <td>15-Jul-2013</td>
+		        </tr>
+		        <tr>
+		            <td>Reb table</td>
+		            <td>$200</td>
+		            <td>15-Jul-2013</td>
+		        </tr>
+		        <tr>
+		            <td>Blue table</td>
+		            <td>$200</td>
+		            <td>15-Jul-2013</td>
+		        </tr>
+		    </tbody>
+		</table>
+	</div>
+	
+	<script th:inline="javascript">
+	/*<![CDATA[*/
+		function ajaxGet() {
+			var url = [[${sampleResourceURL}]];
+			var r = new XMLHttpRequest();
+			r.open("GET", url, true);
+			r.onreadystatechange = function() {
+				if(this.status == 200 && this.readyState == XMLHttpRequest.DONE) {
+					alert("AJAX Response = "+r.responseText);
+				}
+			};
+			r.send();
+		}
+	/*]]>*/
+	</script>
+</div>
+
