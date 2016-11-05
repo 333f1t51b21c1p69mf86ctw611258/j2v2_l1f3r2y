@@ -132,7 +132,7 @@ jQuery(document).ready(function() {
 					"bSearchable" : false,
 					"mRender" : function(data, type, full) {
 						return "<a href='${addStudentUrl}&studentId="+data+"' class='bs-tooltip' data-placement='top' data-original-title='Edit' title='Edit'><i class='icon-pencil'></i></a>"
-						+"&nbsp;<a href='#' id='rowId_"+data+"' onclick='deleteStudent(this)' class='bs-tooltip' data-placement='top' data-original-title='Delete' title='Delete'><i class='icon-trash'></i></a>";
+						+"&nbsp;&nbsp;&nbsp;<a href='#' id='rowId_"+data+"' onclick='deleteStudent(this)' class='bs-tooltip' data-placement='top' data-original-title='Delete' title='Delete'><i class='icon-trash'></i></a>";
 					}
 				}]
 	 });
