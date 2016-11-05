@@ -1,13 +1,14 @@
 package com.dasannetworks.vn.tms.util;
 
-import com.dasannetworks.vn.tms.controller.deviceimport.DeviceRegistrationResponse;
+import java.lang.reflect.Method;
+
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
-import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import java.lang.reflect.Method;
+import com.dasannetworks.vn.tms.controller.deviceimport.DeviceRegistrationResponse;
 
 public class CustomModelAndViewResolver implements ModelAndViewResolver {
 	@Override
@@ -17,7 +18,7 @@ public class CustomModelAndViewResolver implements ModelAndViewResolver {
 		 */
 		if(returnValue instanceof DeviceRegistrationResponse) {
 			ModelAndView mav = new ModelAndView();
-			MappingJacksonJsonView v = new MappingJacksonJsonView();
+			MappingJackson2JsonView v = new MappingJackson2JsonView();
 			v.setBeanName("result");
 			
 			mav.setView(v);
