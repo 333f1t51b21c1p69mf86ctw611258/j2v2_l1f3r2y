@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <portlet:actionURL var="checkDeviceURL">
 	<portlet:param name="action" value="checkDevice"></portlet:param>
@@ -9,52 +9,150 @@
 
 <h3>Device Information To Check</h3>
 
-<form:form name="device" modelAttribute="device" method="post" action="${checkDeviceURL}" >
-	<table>
+<form class="form-inline">
+	<table cellpadding="2">
 		<tr>
-			<td><form:label path="serialNumber"><spring:message code="label.serialNumber"/></form:label></td>
-			<td><form:input path="serialNumber" /></td>
-			<td style="width: 10px;" />
-			<td><form:label path="macAddress"><spring:message code="label.macAddress"/></form:label></td>
-			<td><form:input path="macAddress" /></td>
-		</tr>
-		<tr>
-			<td colspan="5">
-				<div style="float: right;">
-					<input type="submit" value="<spring:message code="label.addcontact"/>"/>
-				</div>
+			<td>			
+				<label for="serialNumber">Serial Number:</label>
+			</td>
+			<td>
+				<input type="text" class="form-control" id="serialNumber">				
+			</td>
+			<td>
+				<label for="macAddress">MAC Address:</label>
+			</td>
+			<td> 
+				<input type="text" class="form-control" id="macAddress">		
 			</td>
 		</tr>
-	</table>	
-</form:form>
+		<tr>
+			<td>
+				<label for="purchaseOrder">Purchase Order:</label>
+			</td>
+			<td>
+				<input type="text" class="form-control" id="purchaseOrder">		
+			</td>
+			<td>
+				<label for="modelName">Model Name:</label>
+			</td>
+			<td> 
+				<input type="text" class="form-control" id="modelName">		
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="checkbox">
+					<label><input id="checkExactly" type="checkbox">Check Exactly</label>
+			    </div>
+			</td>
+			<td>
+				<button id="btnCheck" type="submit" class="btn btn-default">Check</button>
+			</td>
+		</tr>
+	</table>
+</form>
+
+
 
 <h3>Results</h3>
 
-<c:if test="${!empty deviceList}">
-	<table class="table">
+<div>
+	<table id="device-datatable"
+		class="display" cellspacing="0">
 		<thead>
 			<tr>
-				<th>Model Name</th>
-				<th>Serial Number</th>
-				<th>MAC Address</th>
+				<th><spring:message code="label.modelName" /></th>
+				<th><spring:message code="label.serialNumber" /></th>
+				<th><spring:message code="label.macAddress" /></th>
 				<th>Factory Out</th>
 				<th>Warranty Start Date</th>
 				<th>Warranty End Date</th>
-				<!-- <th>#</th> -->
 			</tr>
 		</thead>
+		<tfoot>
+			<tr>
+				<th><spring:message code="label.modelName" /></th>
+				<th><spring:message code="label.serialNumber" /></th>
+				<th><spring:message code="label.macAddress" /></th>
+				<th>Factory Out</th>
+				<th>Warranty Start Date</th>
+				<th>Warranty End Date</th>
+			</tr>
+		</tfoot>
 		<tbody>
-			<c:forEach items="${deviceList}" var="device">
-				<tr>
-					<td>${device.modelName}</td>
-					<td>${device.serialNumber}</td>
-					<td>${device.macAddress}</td>
-					<td>${device.factoryOut}</td>
-					<td>${device.warrantyStartDate}</td>
-					<td>${device.warrantyEndDate}</td>
-					<%-- <td><a href="${viewDeviceURL}&deviceId=${device.deviceId}">view</a></td> --%>
-				</tr>
-			</c:forEach>
 		</tbody>
 	</table>
-</c:if>
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('#device-datatable').dataTable({
+			"language" : {
+				"emptyTable" : "No data available in table"
+			},
+			bAutoWidth : true,
+			bProcessing : true,
+			bFilter : false,
+			sPaginationType : "full_numbers",
+			sAjaxSource : "<portlet:resourceURL id='getAllDevices'/>",
+			"aoColumns" : [ {
+				"mData" : "_modelName"
+			}, {
+				"mData" : "_serialNumber"
+			}, {
+				"mData" : "_macAddress"
+			}, {
+				"mData" : "_factoryOut"
+			}, {
+				"mData" : "_warrantyStartDate"
+			}, {
+				"mData" : "_warrantyEndDate"
+			} ]
+		});
+		
+		jQuery("#btnCheck").click(function(e) {
+			checkDevice();
+			
+			event.preventDefault();
+		});
+		
+		function checkDevice() {
+			var strData = "serialNumber=" + $('#serialNumber').val() 
+			+ "&macAddress=" + $('#macAddress').val()
+			+ "&purchaseOrder=" + $('#purchaseOrder').val()
+			+ "&modelName=" + $('#modelName').val();
+			
+			jQuery.ajax({
+				type : "POST",
+				url : "<portlet:resourceURL id='checkDevices' />",
+				data : strData,
+				dataType : "json",
+				success : function(response) {
+					var dataTable = jQuery('#device-datatable').dataTable();
+					
+					dataTable.fnClearTable();
+					
+					if (!$.isEmptyObject(response.deviceList)) {
+						var jsonArr = [];
+						
+						jQuery(response.deviceList).each(function(indx, element) {
+							jsonArr.push({
+								_modelName : element._modelName,
+								_serialNumber : element._serialNumber,
+								_macAddress : element._macAddress,
+								_factoryOut : element._factoryOut,
+								_warrantyStartDate : element._warrantyStartDate,
+								_warrantyEndDate : element._warrantyEndDate
+							});
+						});
+						
+						dataTable.fnAddData(jsonArr);
+					}
+				},
+				error : function(e) {
+					alert('Ajax Error: ' + e);
+				}
+			});
+		}
+	});
+</script>
