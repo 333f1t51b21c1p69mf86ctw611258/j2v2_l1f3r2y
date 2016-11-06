@@ -17,11 +17,6 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
 
-	<bean id="annotationMethodHandlerAdapter" class="org.springframework.web.portlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="customModelAndViewResolver">
-			<bean class="com.dasannetworks.vn.tms.util.CustomModelAndViewResolver"/>
-		</property>
-	</bean>
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">

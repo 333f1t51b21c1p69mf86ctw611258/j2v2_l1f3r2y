@@ -8,4 +8,10 @@
 >
 	<context:component-scan base-package="com.dasannetworks.vn.tms.controller.deviceimport.**" />
 	<context:component-scan base-package="com.dasannetworks.vn.tms.service.**" />
+	
+	<bean id="annotationMethodHandlerAdapter" class="org.springframework.web.portlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="customModelAndViewResolver">
+			<bean class="com.dasannetworks.vn.tms.util.CustomModelAndViewResolver"/>
+		</property>
+	</bean>
 </beans>

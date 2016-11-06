@@ -22,9 +22,22 @@
 	
 	<portlet>
 		<portlet-name>check-device-warranty</portlet-name>
+		
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		
 		<header-portlet-css>/css/main.css</header-portlet-css>
+
+		<header-portlet-css>/css/check-device-warranty/dataTableUI.css</header-portlet-css>
+		<header-portlet-javascript>/js/check-device-warranty/jquery-1.10.2.min.js</header-portlet-javascript>
+		
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+
+		<footer-portlet-javascript>/js/check-device-warranty/bootstrap.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/check-device-warranty/jquery.bootstrap.wizard.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/check-device-warranty/jquery.validate.min.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/check-device-warranty/jquery.dataTables.min.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/check-device-warranty/form_wizard.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/check-device-warranty/jquery.timer.js</footer-portlet-javascript>
 	</portlet>
 	
 	<role-mapper>
