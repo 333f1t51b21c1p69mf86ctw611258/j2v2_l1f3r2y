@@ -62,27 +62,52 @@ public class DeviceLocalServiceImpl extends DeviceLocalServiceBaseImpl {
 
 		if (Validator.isNotNull(searchInput.getSerialNumber())) {
 			Property property = PropertyFactoryUtil.forName("serialNumber");
-			junction.add(property.like(String.format("%%%s%%", searchInput.getSerialNumber())));
+
+			if (searchInput.isExactly()) {
+				junction.add(property.eq(searchInput.getSerialNumber()));
+			} else {
+				junction.add(property.like(String.format("%%%s%%", searchInput.getSerialNumber())));
+			}
 		}
 
 		if (Validator.isNotNull(searchInput.getMacAddress())) {
 			Property property = PropertyFactoryUtil.forName("macAddress");
-			junction.add(property.like(String.format("%%%s%%", searchInput.getMacAddress())));
+
+			if (searchInput.isExactly()) {
+				junction.add(property.eq(searchInput.getMacAddress()));
+			} else {
+				junction.add(property.like(String.format("%%%s%%", searchInput.getMacAddress())));
+			}
 		}
 
 		if (Validator.isNotNull(searchInput.getManufacturerSerial())) {
 			Property property = PropertyFactoryUtil.forName("manufacturerSerial");
-			junction.add(property.like(String.format("%%%s%%", searchInput.getManufacturerSerial())));
+
+			if (searchInput.isExactly()) {
+				junction.add(property.eq(searchInput.getManufacturerSerial()));
+			} else {
+				junction.add(property.like(String.format("%%%s%%", searchInput.getManufacturerSerial())));
+			}
 		}
 
 		if (Validator.isNotNull(searchInput.getProductName())) {
 			Property property = PropertyFactoryUtil.forName("modelName");
-			junction.add(property.like(String.format("%%%s%%", searchInput.getProductName())));
+
+			if (searchInput.isExactly()) {
+				junction.add(property.eq(searchInput.getProductName()));
+			} else {
+				junction.add(property.like(String.format("%%%s%%", searchInput.getProductName())));
+			}
 		}
 
 		if (Validator.isNotNull(searchInput.getPartNumber())) {
 			Property property = PropertyFactoryUtil.forName("partNumber");
-			junction.add(property.like(String.format("%%%s%%", searchInput.getProductName())));
+
+			if (searchInput.isExactly()) {
+				junction.add(property.eq(searchInput.getPartNumber()));
+			} else {
+				junction.add(property.like(String.format("%%%s%%", searchInput.getPartNumber())));
+			}
 		}
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Device.class, getClassLoader());
