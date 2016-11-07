@@ -92,5 +92,18 @@
 
 			</properties>
 		</profile>
+
+		<profile>
+			<id>henrik2</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<liferay.auto.deploy.dir>/Volumes/Data/DEV/Java/Liferay/liferay-portal-6.2-ce-ga6/deploy</liferay.auto.deploy.dir>
+				<liferay.app.server.deploy.dir>/Volumes/Data/DEV/Java/Liferay/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/webapps</liferay.app.server.deploy.dir>
+				<liferay.app.server.lib.global.dir>/Volumes/Data/DEV/Java/Liferay/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/lib/ext</liferay.app.server.lib.global.dir>
+				<liferay.app.server.portal.dir>/Volumes/Data/DEV/Java/Liferay/liferay-portal-6.2-ce-ga6/tomcat-7.0.62/webapps/ROOT</liferay.app.server.portal.dir>
+			</properties>
+		</profile>
 	</profiles>
 </project>
