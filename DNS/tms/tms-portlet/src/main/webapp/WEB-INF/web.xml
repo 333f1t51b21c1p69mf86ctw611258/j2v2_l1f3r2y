@@ -10,6 +10,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring-context/portlet-application-context.xml</param-value>
 	</context-param>
+	
 	<servlet>
 		<servlet-name>ViewRendererServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.ViewRendererServlet</servlet-class>
@@ -19,9 +20,11 @@
 		<servlet-name>ViewRendererServlet</servlet-name>
 		<url-pattern>/WEB-INF/servlet/view</url-pattern>
 	</servlet-mapping>
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
 	<jsp-config>
 		<taglib>
 			<taglib-uri>http://java.sun.com/portlet_2_0</taglib-uri>

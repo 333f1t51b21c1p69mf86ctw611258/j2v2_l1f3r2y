@@ -25,12 +25,12 @@
 		
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 		
-		<header-portlet-css>/css/main.css</header-portlet-css>
-
 		<header-portlet-css>/css/check-device-warranty/jquery.dataTables.css</header-portlet-css>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		
 		<header-portlet-javascript>/js/check-device-warranty/jquery-1.11.1.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/check-device-warranty/jquery.dataTables.min.js</header-portlet-javascript>
-		
+		<header-portlet-javascript>/js/check-device-warranty/jquery.form.js</header-portlet-javascript>				
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 	

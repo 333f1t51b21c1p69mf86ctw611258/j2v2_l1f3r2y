@@ -1,5 +1,12 @@
 package com.dasannetworks.vn.tms.service;
 
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.dasannetworks.vn.sb.NoSuchDeviceException;
 import com.dasannetworks.vn.sb.NoSuchPurchaseOrderException;
 import com.dasannetworks.vn.sb.model.Device;
@@ -9,15 +16,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.util.Date;
-import java.util.List;
-
-@Component
+@Service
 public class ImportDeviceListService {
     private static Log _log = LogFactoryUtil.getLog(ImportDeviceListService.class);
     private final ExcelService excelService;

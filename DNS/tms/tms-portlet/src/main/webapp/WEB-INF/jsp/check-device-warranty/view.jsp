@@ -7,7 +7,7 @@
 	<portlet:param name="action" value="checkDevice"></portlet:param>
 </portlet:actionURL>
 
-<form class="form-inline">
+<form id="frmParticular" class="form-inline">
 	<div class="panel panel-default">
 	    <div class="panel-heading">Check with particular informations</div>
 	    <div class="panel-body">
@@ -53,7 +53,9 @@
 			</table>
 		</div>
 	</div>
+</form>
 	
+<form id="frmExcel" enctype="multipart/form-data" action='<portlet:actionURL><portlet:param name="action" value="checkDevicesWithExcel" /></portlet:actionURL>' class="form-inline">
 	<div class="panel panel-default">
 	    <div class="panel-heading">Check with inputted excel file</div>
 	    <div class="panel-body">
@@ -79,12 +81,11 @@
 			</table>
 	    </div>
 	</div>
+	
+	<div id="result"></div>
 </form>
 
-
-
 <h3>Results</h3>
-
 <div>
 	<table id="device-datatable"
 		class="display" cellspacing="0">
@@ -140,12 +141,8 @@
 		});
 		
 		jQuery("#btnCheck1").click(function(e) {
-			checkDevice();
-			
 			event.preventDefault();
-		});
-		
-		function checkDevice() {
+			
 			var strData = "serialNumber=" + $('#serialNumber').val() 
 			+ "&macAddress=" + $('#macAddress').val()
 			+ "&purchaseOrder=" + $('#purchaseOrder').val()
@@ -182,6 +179,47 @@
 					alert('Ajax Error: ' + e);
 				}
 			});
-		}
+		});
+		
+		jQuery("#btnCheck2").click(function(e) {
+			event.preventDefault();
+			
+			var oMyForm = new FormData();
+			oMyForm.append("fileExcel", fExcel.files[0]);
+			
+			$.ajax({
+				type: 'POST',
+				url : "<portlet:resourceURL id='checkDevicesWithExcel' />", 
+				data: oMyForm,
+				dataType: 'json',
+				processData: false,
+				contentType: false,
+				success : function(response) {
+					var dataTable = jQuery('#device-datatable').dataTable();
+					
+					dataTable.fnClearTable();
+					
+					if (!$.isEmptyObject(response.deviceList)) {
+						var jsonArr = [];
+						
+						jQuery(response.deviceList).each(function(indx, element) {
+							jsonArr.push({
+								_modelName : element._modelName,
+								_serialNumber : element._serialNumber,
+								_macAddress : element._macAddress,
+								_factoryOut : element._factoryOut,
+								_warrantyStartDate : element._warrantyStartDate,
+								_warrantyEndDate : element._warrantyEndDate
+							});
+						});
+						
+						dataTable.fnAddData(jsonArr);
+					}
+				},
+				error : function(e) {
+					alert('Ajax Error: ' + e);
+				}
+			});
+		});
 	});
 </script>

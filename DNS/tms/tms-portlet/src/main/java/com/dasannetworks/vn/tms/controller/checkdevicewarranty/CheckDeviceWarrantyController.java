@@ -1,10 +1,14 @@
 package com.dasannetworks.vn.tms.controller.checkdevicewarranty;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -14,6 +18,7 @@ import javax.portlet.PortletResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,11 +34,16 @@ import com.dasannetworks.vn.sb.service.DeviceLocalServiceUtil;
 import com.dasannetworks.vn.tms.controller.BaseController;
 import com.dasannetworks.vn.tms.pojo.DevicePOJO;
 import com.dasannetworks.vn.tms.service.DeviceSearchInput;
+import com.dasannetworks.vn.tms.service.ExcelService;
+import com.dasannetworks.vn.tms.service.ImportDeviceListService.DeviceListInputFile;
+import com.dasannetworks.vn.tms.service.ImportDeviceListService.DeviceListInputRow;
 import com.dasannetworks.vn.tms.util.DeviceUtil;
 import com.dasannetworks.vn.tms.util.JsonServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.upload.UploadRequest;
+import com.liferay.portal.util.PortalUtil;
 
 @Controller("checkDeviceWarrantyController")
 @RequestMapping("VIEW")
@@ -48,7 +58,8 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 		map.put("device", this.pojoDevice);
 
-		// List<Device> deviceList = DeviceLocalServiceUtil.getDevices(0, DeviceLocalServiceUtil.getDevicesCount());
+		// List<Device> deviceList = DeviceLocalServiceUtil.getDevices(0,
+		// DeviceLocalServiceUtil.getDevicesCount());
 		// map.put("deviceList", deviceList);
 
 		return "check-device-warranty/view";
@@ -104,38 +115,80 @@ public class CheckDeviceWarrantyController extends BaseController {
 	}
 
 	@ResourceMapping("checkDevices")
-	public void searchStudents(
+	public void checkDevices(
 			@RequestParam("serialNumber") String serialNumber,
 			@RequestParam("macAddress") String macAddress,
 			@RequestParam("purchaseOrder") String purchaseOrder,
 			@RequestParam("modelName") String modelName,
-			ResourceRequest request,
-			ResourceResponse response) {
-		LOGGER.info("searchStudents() + " + serialNumber + "|" + macAddress);
+			ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException {
 
-		PrintWriter writer = null;
 		List<Device> deviceList = null;
 		try {
-			writer = response.getWriter();
-			// Fetch students
-			
-			DeviceSearchInput deviceSearchInput = new DeviceSearchInput();
-			deviceSearchInput.setStart(0);
-			deviceSearchInput.setEnd(1000);
-			deviceSearchInput.setAndSearchCondition(true);
-			deviceSearchInput.setSerialNumber(serialNumber);
-			deviceSearchInput.setMacAddress(macAddress);
-			
-			deviceList = DeviceLocalServiceUtil.search(deviceSearchInput);
+			deviceList = searchDeviceList(serialNumber, macAddress);
 		} catch (Exception e) {
-			LOGGER.error("Error while getting all students", e);
+			LOGGER.error("Error while getting all devices", e);
 		}
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		List<DevicePOJO> listDevicePOJO = DeviceUtil.getDeviceVOList(deviceList);
 		map.put("deviceList", listDevicePOJO);
-		
+
+		PrintWriter writer = null;
+		writer = resourceResponse.getWriter();
+		JsonServiceUtil.writeJson(writer, map);
+	}
+
+	private List<Device> searchDeviceList(String serialNumber, String macAddress) throws SystemException {
+		List<Device> deviceList;
+		DeviceSearchInput deviceSearchInput = new DeviceSearchInput();
+		deviceSearchInput.setAndSearchCondition(true);
+		deviceSearchInput.setSerialNumber(serialNumber);
+		deviceSearchInput.setMacAddress(macAddress);
+
+		long count = DeviceLocalServiceUtil.searchCount(deviceSearchInput);
+
+		deviceSearchInput.setStart(0);
+		deviceSearchInput.setEnd((int) count);
+
+		deviceList = DeviceLocalServiceUtil.search(deviceSearchInput);
+		return deviceList;
+	}
+
+	@ResourceMapping("checkDevicesWithExcel")
+	public void checkDevicesWithExcel(
+			ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException, PortletException, SystemException {
+
+		UploadRequest uploadRequest = PortalUtil.getUploadPortletRequest(resourceRequest);
+		Set<Device> hsDevices = new HashSet<Device>();
+		if (uploadRequest != null) {
+			File objFile = uploadRequest.getFile("fileExcel");
+
+			if (objFile != null) {
+				DeviceListInputFile deviceListInputFile = ExcelService.parseDeviceList(objFile);
+
+				List<DeviceListInputRow> rows = deviceListInputFile.getRows();
+
+				LOGGER.info("rows: " + rows.size());
+
+				List<Device> tmpDevices = null;
+				for (DeviceListInputRow deviceListInputRow : rows) {
+					tmpDevices = searchDeviceList(deviceListInputRow.getSerialNumber(), deviceListInputRow.getMacAddress());
+					if (!CollectionUtils.isEmpty(tmpDevices)) {
+						hsDevices.addAll(tmpDevices);
+					}
+				}
+			}
+		}
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Device> tmpDevices = new ArrayList<>(hsDevices);
+		List<DevicePOJO> listDevicePOJO = DeviceUtil.getDeviceVOList(tmpDevices);
+		map.put("deviceList", listDevicePOJO);
+
+		PrintWriter writer = null;
+		writer = resourceResponse.getWriter();
 		JsonServiceUtil.writeJson(writer, map);
 	}
 

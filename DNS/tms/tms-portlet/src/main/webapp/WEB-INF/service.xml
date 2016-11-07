@@ -59,6 +59,11 @@
 
 		<column name="purchaseOrderId" type="long" primary="true"></column>
 
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
 		<column name="createDate" type="Date"></column>
 		<column name="modifiedDate" type="Date"></column>
 
@@ -69,6 +74,64 @@
 		<finder name="PurchaseOrderNumber" return-type="PurchaseOrder"
 			unique="true">
 			<finder-column name="purchaseOrderNumber" />
+		</finder>
+	</entity>
+
+	<entity name="HandOverForm" local-service="true" cache-enabled="false">
+		<!-- PK fields -->
+
+		<column name="handOverFormId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<column name="customerCode" type="String"></column>
+		<column name="contactPoint" type="String"></column>
+		<column name="email" type="String"></column>
+		<column name="phone" type="String"></column>
+		<column name="location" type="String"></column>
+		<column name="personInCharge" type="String"></column>
+		<column name="handOverFormNumber" type="String"></column>
+		<column name="note" type="String"></column>
+		<column name="assignDate" type="Date"></column>
+		<column name="estimatedReturnDate" type="Date"></column>
+
+		<finder name="HandOverFormNumber" return-type="HandOverForm"
+				unique="true">
+			<finder-column name="handOverFormNumber" />
+		</finder>
+	</entity>
+
+	<entity name="HandOverDevice">
+		<!-- PK fields -->
+
+		<column name="handOverFormId" type="long" primary="true"></column>
+		<column name="deviceId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<column name="faultNote" type="String"></column>
+		<column name="status" type="String"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="HandOverFormId" return-type="Collection">
+			<finder-column name="handOverFormId" />
+		</finder>
+
+		<finder name="DeviceId" return-type="Device" unique="true">
+			<finder-column name="deviceId" />
 		</finder>
 	</entity>
 
