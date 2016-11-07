@@ -7,49 +7,78 @@
 	<portlet:param name="action" value="checkDevice"></portlet:param>
 </portlet:actionURL>
 
-<h3>Device Information To Check</h3>
-
 <form class="form-inline">
-	<table cellpadding="2">
-		<tr>
-			<td>			
-				<label for="serialNumber">Serial Number:</label>
-			</td>
-			<td>
-				<input type="text" class="form-control" id="serialNumber">				
-			</td>
-			<td>
-				<label for="macAddress">MAC Address:</label>
-			</td>
-			<td> 
-				<input type="text" class="form-control" id="macAddress">		
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label for="purchaseOrder">Purchase Order:</label>
-			</td>
-			<td>
-				<input type="text" class="form-control" id="purchaseOrder">		
-			</td>
-			<td>
-				<label for="modelName">Model Name:</label>
-			</td>
-			<td> 
-				<input type="text" class="form-control" id="modelName">		
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="checkbox">
-					<label><input id="checkExactly" type="checkbox">Check Exactly</label>
-			    </div>
-			</td>
-			<td>
-				<button id="btnCheck" type="submit" class="btn btn-default">Check</button>
-			</td>
-		</tr>
-	</table>
+	<div class="panel panel-default">
+	    <div class="panel-heading">Check with particular informations</div>
+	    <div class="panel-body">
+			<table cellpadding="2">
+				<tr>
+					<td>			
+						<label for="serialNumber">Serial Number:</label>
+					</td>
+					<td>
+						<input type="text" class="form-control" id="serialNumber">				
+					</td>
+					<td>
+						<label for="macAddress">MAC Address:</label>
+					</td>
+					<td> 
+						<input type="text" class="form-control" id="macAddress">		
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="purchaseOrder">Purchase Order:</label>
+					</td>
+					<td>
+						<input type="text" class="form-control" id="purchaseOrder">		
+					</td>
+					<td>
+						<label for="modelName">Model Name:</label>
+					</td>
+					<td> 
+						<input type="text" class="form-control" id="modelName">		
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="checkbox">
+							<label><input id="chkExactly1" type="checkbox">Check Exactly</label>
+					    </div>
+					</td>
+					<td>
+						<button id="btnCheck1" type="submit" class="btn btn-default">Check</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+	    <div class="panel-heading">Check with inputted excel file</div>
+	    <div class="panel-body">
+			<table cellpadding="2">
+				<tr>
+					<td>
+						<label for="fExcel">File Upload:</label>
+					</td>
+					<td>
+						<input name="fExcel" id="fExcel" type="file" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="checkbox">
+							<label><input id="chkExactly2" type="checkbox">Check Exactly</label>
+					    </div>
+					</td>
+					<td>
+						<button id="btnCheck2" type="submit" class="btn btn-default">Check</button>
+					</td>
+				</tr>
+			</table>
+	    </div>
+	</div>
 </form>
 
 
@@ -110,7 +139,7 @@
 			} ]
 		});
 		
-		jQuery("#btnCheck").click(function(e) {
+		jQuery("#btnCheck1").click(function(e) {
 			checkDevice();
 			
 			event.preventDefault();
