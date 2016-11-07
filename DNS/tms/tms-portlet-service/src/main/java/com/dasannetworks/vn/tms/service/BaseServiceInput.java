@@ -7,6 +7,7 @@ public abstract class BaseServiceInput {
 	private int end = -1;
 	private String sortField;
 	private String sortDirection;
+	private boolean exactly = false;
 
 	public boolean isAndSearchCondition() {
 		return andSearchCondition;
@@ -46,6 +47,14 @@ public abstract class BaseServiceInput {
 
 	public void setSortDirection(String sortDirection) {
 		this.sortDirection = sortDirection;
+	}
+
+	public boolean isExactly() {
+		return exactly;
+	}
+
+	public void setExactly(boolean exactly) {
+		this.exactly = exactly;
 	}
 
 }
