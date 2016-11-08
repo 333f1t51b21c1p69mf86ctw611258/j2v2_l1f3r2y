@@ -56,7 +56,7 @@ public class CheckDeviceWarrantyController extends BaseController {
 	@RenderMapping
 	public String defaultHandler(Map<String, Object> map) throws SystemException {
 
-		map.put("device", this.pojoDevice);
+		// map.put("device", this.pojoDevice);
 
 		// List<Device> deviceList = DeviceLocalServiceUtil.getDevices(0,
 		// DeviceLocalServiceUtil.getDevicesCount());
@@ -116,6 +116,7 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 	@ResourceMapping("checkDevices")
 	public void checkDevices(
+			@RequestParam("exactly") Boolean exactly,
 			@RequestParam("serialNumber") String serialNumber,
 			@RequestParam("macAddress") String macAddress,
 			@RequestParam("purchaseOrder") String purchaseOrder,
@@ -125,7 +126,7 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 		List<Device> deviceList = null;
 		try {
-			deviceList = searchDeviceList(serialNumber, macAddress);
+			deviceList = searchDeviceList(exactly, serialNumber, macAddress);
 		} catch (Exception e) {
 			LOGGER.error("Error while getting all devices", e);
 		}
@@ -139,9 +140,10 @@ public class CheckDeviceWarrantyController extends BaseController {
 		JsonServiceUtil.writeJson(writer, map);
 	}
 
-	private List<Device> searchDeviceList(String serialNumber, String macAddress) throws SystemException {
+	private List<Device> searchDeviceList(boolean exactly, String serialNumber, String macAddress) throws SystemException {
 		List<Device> deviceList;
 		DeviceSearchInput deviceSearchInput = new DeviceSearchInput();
+		deviceSearchInput.setExactly(exactly);
 		deviceSearchInput.setAndSearchCondition(true);
 		deviceSearchInput.setSerialNumber(serialNumber);
 		deviceSearchInput.setMacAddress(macAddress);
@@ -174,7 +176,7 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 				List<Device> tmpDevices = null;
 				for (DeviceListInputRow deviceListInputRow : rows) {
-					tmpDevices = searchDeviceList(deviceListInputRow.getSerialNumber(), deviceListInputRow.getMacAddress());
+					tmpDevices = searchDeviceList(true, deviceListInputRow.getSerialNumber(), deviceListInputRow.getMacAddress());
 					if (!CollectionUtils.isEmpty(tmpDevices)) {
 						hsDevices.addAll(tmpDevices);
 					}

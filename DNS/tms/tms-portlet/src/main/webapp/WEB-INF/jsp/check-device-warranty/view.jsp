@@ -7,6 +7,16 @@
 	<portlet:param name="action" value="checkDevice"></portlet:param>
 </portlet:actionURL>
 
+<style type="text/css">
+	.inner_table {
+		
+	}
+
+	.first_lable_width {
+		width: 120px;
+	}
+</style>
+
 <form id="frmParticular" class="form-inline">
 	<div class="panel panel-default">
 	    <div class="panel-heading">Check with particular informations</div>
@@ -41,7 +51,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td class="first_lable_width">
 						<div class="checkbox">
 							<label><input id="chkExactly1" type="checkbox">Check Exactly</label>
 					    </div>
@@ -69,10 +79,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
-						<div class="checkbox">
-							<label><input id="chkExactly2" type="checkbox">Check Exactly</label>
-					    </div>
+					<td class="first_lable_width">
+<!-- 						<div class="checkbox"> -->
+<!-- 							<label><input id="chkExactly2" type="checkbox">Check Exactly</label> -->
+<!-- 					    </div> -->
 					</td>
 					<td>
 						<button id="btnCheck2" type="submit" class="btn btn-default">Check</button>
@@ -143,10 +153,17 @@
 		jQuery("#btnCheck1").click(function(e) {
 			event.preventDefault();
 			
-			var strData = "serialNumber=" + $('#serialNumber').val() 
-			+ "&macAddress=" + $('#macAddress').val()
-			+ "&purchaseOrder=" + $('#purchaseOrder').val()
-			+ "&modelName=" + $('#modelName').val();
+			var strData = '';
+			if ($('#chkExactly1').is(":checked")) {
+				strData = "exactly=true&";
+			} else {
+				strData = "exactly=false&";
+			}
+			
+			strData += "serialNumber=" + $('#serialNumber').val() 
+				+ "&macAddress=" + $('#macAddress').val()
+				+ "&purchaseOrder=" + $('#purchaseOrder').val()
+				+ "&modelName=" + $('#modelName').val();
 			
 			jQuery.ajax({
 				type : "POST",
