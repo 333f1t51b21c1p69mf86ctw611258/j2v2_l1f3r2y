@@ -39,6 +39,9 @@ public class PurchaseOrderWrapper implements PurchaseOrder,
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("purchaseOrderId", getPurchaseOrderId());
+        attributes.put("companyId", getCompanyId());
+        attributes.put("userId", getUserId());
+        attributes.put("userName", getUserName());
         attributes.put("createDate", getCreateDate());
         attributes.put("modifiedDate", getModifiedDate());
         attributes.put("customer", getCustomer());
@@ -54,6 +57,24 @@ public class PurchaseOrderWrapper implements PurchaseOrder,
 
         if (purchaseOrderId != null) {
             setPurchaseOrderId(purchaseOrderId);
+        }
+
+        Long companyId = (Long) attributes.get("companyId");
+
+        if (companyId != null) {
+            setCompanyId(companyId);
+        }
+
+        Long userId = (Long) attributes.get("userId");
+
+        if (userId != null) {
+            setUserId(userId);
+        }
+
+        String userName = (String) attributes.get("userName");
+
+        if (userName != null) {
+            setUserName(userName);
         }
 
         Date createDate = (Date) attributes.get("createDate");
@@ -126,6 +147,88 @@ public class PurchaseOrderWrapper implements PurchaseOrder,
     @Override
     public void setPurchaseOrderId(long purchaseOrderId) {
         _purchaseOrder.setPurchaseOrderId(purchaseOrderId);
+    }
+
+    /**
+    * Returns the company ID of this purchase order.
+    *
+    * @return the company ID of this purchase order
+    */
+    @Override
+    public long getCompanyId() {
+        return _purchaseOrder.getCompanyId();
+    }
+
+    /**
+    * Sets the company ID of this purchase order.
+    *
+    * @param companyId the company ID of this purchase order
+    */
+    @Override
+    public void setCompanyId(long companyId) {
+        _purchaseOrder.setCompanyId(companyId);
+    }
+
+    /**
+    * Returns the user ID of this purchase order.
+    *
+    * @return the user ID of this purchase order
+    */
+    @Override
+    public long getUserId() {
+        return _purchaseOrder.getUserId();
+    }
+
+    /**
+    * Sets the user ID of this purchase order.
+    *
+    * @param userId the user ID of this purchase order
+    */
+    @Override
+    public void setUserId(long userId) {
+        _purchaseOrder.setUserId(userId);
+    }
+
+    /**
+    * Returns the user uuid of this purchase order.
+    *
+    * @return the user uuid of this purchase order
+    * @throws SystemException if a system exception occurred
+    */
+    @Override
+    public java.lang.String getUserUuid()
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _purchaseOrder.getUserUuid();
+    }
+
+    /**
+    * Sets the user uuid of this purchase order.
+    *
+    * @param userUuid the user uuid of this purchase order
+    */
+    @Override
+    public void setUserUuid(java.lang.String userUuid) {
+        _purchaseOrder.setUserUuid(userUuid);
+    }
+
+    /**
+    * Returns the user name of this purchase order.
+    *
+    * @return the user name of this purchase order
+    */
+    @Override
+    public java.lang.String getUserName() {
+        return _purchaseOrder.getUserName();
+    }
+
+    /**
+    * Sets the user name of this purchase order.
+    *
+    * @param userName the user name of this purchase order
+    */
+    @Override
+    public void setUserName(java.lang.String userName) {
+        _purchaseOrder.setUserName(userName);
     }
 
     /**

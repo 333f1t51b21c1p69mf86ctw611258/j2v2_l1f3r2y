@@ -41,10 +41,10 @@ public class ContactLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName46;
-    private String[] _methodParameterTypes46;
-    private String _methodName47;
-    private String[] _methodParameterTypes47;
+    private String _methodName56;
+    private String[] _methodParameterTypes56;
+    private String _methodName57;
+    private String[] _methodParameterTypes57;
 
     public ContactLocalServiceClpInvoker() {
         _methodName0 = "addContact";
@@ -129,13 +129,13 @@ public class ContactLocalServiceClpInvoker {
                 "com.dasannetworks.vn.sb.model.Contact"
             };
 
-        _methodName46 = "getBeanIdentifier";
+        _methodName56 = "getBeanIdentifier";
 
-        _methodParameterTypes46 = new String[] {  };
+        _methodParameterTypes56 = new String[] {  };
 
-        _methodName47 = "setBeanIdentifier";
+        _methodName57 = "setBeanIdentifier";
 
-        _methodParameterTypes47 = new String[] { "java.lang.String" };
+        _methodParameterTypes57 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -227,13 +227,13 @@ public class ContactLocalServiceClpInvoker {
             return ContactLocalServiceUtil.updateContact((com.dasannetworks.vn.sb.model.Contact) arguments[0]);
         }
 
-        if (_methodName46.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+        if (_methodName56.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
             return ContactLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName47.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+        if (_methodName57.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
             ContactLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;

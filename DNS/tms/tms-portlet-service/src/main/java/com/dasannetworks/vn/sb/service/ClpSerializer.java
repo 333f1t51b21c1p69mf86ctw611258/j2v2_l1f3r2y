@@ -2,6 +2,8 @@ package com.dasannetworks.vn.sb.service;
 
 import com.dasannetworks.vn.sb.model.ContactClp;
 import com.dasannetworks.vn.sb.model.DeviceClp;
+import com.dasannetworks.vn.sb.model.HandOverDeviceClp;
+import com.dasannetworks.vn.sb.model.HandOverFormClp;
 import com.dasannetworks.vn.sb.model.PurchaseOrderClp;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -98,6 +100,14 @@ public class ClpSerializer {
             return translateInputDevice(oldModel);
         }
 
+        if (oldModelClassName.equals(HandOverDeviceClp.class.getName())) {
+            return translateInputHandOverDevice(oldModel);
+        }
+
+        if (oldModelClassName.equals(HandOverFormClp.class.getName())) {
+            return translateInputHandOverForm(oldModel);
+        }
+
         if (oldModelClassName.equals(PurchaseOrderClp.class.getName())) {
             return translateInputPurchaseOrder(oldModel);
         }
@@ -131,6 +141,26 @@ public class ClpSerializer {
         DeviceClp oldClpModel = (DeviceClp) oldModel;
 
         BaseModel<?> newModel = oldClpModel.getDeviceRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
+    }
+
+    public static Object translateInputHandOverDevice(BaseModel<?> oldModel) {
+        HandOverDeviceClp oldClpModel = (HandOverDeviceClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getHandOverDeviceRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
+    }
+
+    public static Object translateInputHandOverForm(BaseModel<?> oldModel) {
+        HandOverFormClp oldClpModel = (HandOverFormClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getHandOverFormRemoteModel();
 
         newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -200,6 +230,76 @@ public class ClpSerializer {
         if (oldModelClassName.equals(
                     "com.dasannetworks.vn.sb.model.impl.DeviceImpl")) {
             return translateOutputDevice(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
+
+        if (oldModelClassName.equals(
+                    "com.dasannetworks.vn.sb.model.impl.HandOverDeviceImpl")) {
+            return translateOutputHandOverDevice(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
+
+        if (oldModelClassName.equals(
+                    "com.dasannetworks.vn.sb.model.impl.HandOverFormImpl")) {
+            return translateOutputHandOverForm(oldModel);
         } else if (oldModelClassName.endsWith("Clp")) {
             try {
                 ClassLoader classLoader = ClpSerializer.class.getClassLoader();
@@ -352,6 +452,16 @@ public class ClpSerializer {
         }
 
         if (className.equals(
+                    "com.dasannetworks.vn.sb.NoSuchHandOverDeviceException")) {
+            return new com.dasannetworks.vn.sb.NoSuchHandOverDeviceException();
+        }
+
+        if (className.equals(
+                    "com.dasannetworks.vn.sb.NoSuchHandOverFormException")) {
+            return new com.dasannetworks.vn.sb.NoSuchHandOverFormException();
+        }
+
+        if (className.equals(
                     "com.dasannetworks.vn.sb.NoSuchPurchaseOrderException")) {
             return new com.dasannetworks.vn.sb.NoSuchPurchaseOrderException();
         }
@@ -375,6 +485,26 @@ public class ClpSerializer {
         newModel.setModelAttributes(oldModel.getModelAttributes());
 
         newModel.setDeviceRemoteModel(oldModel);
+
+        return newModel;
+    }
+
+    public static Object translateOutputHandOverDevice(BaseModel<?> oldModel) {
+        HandOverDeviceClp newModel = new HandOverDeviceClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setHandOverDeviceRemoteModel(oldModel);
+
+        return newModel;
+    }
+
+    public static Object translateOutputHandOverForm(BaseModel<?> oldModel) {
+        HandOverFormClp newModel = new HandOverFormClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setHandOverFormRemoteModel(oldModel);
 
         return newModel;
     }

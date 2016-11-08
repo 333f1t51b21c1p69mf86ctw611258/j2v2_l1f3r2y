@@ -34,10 +34,10 @@ import com.dasannetworks.vn.sb.service.DeviceLocalServiceUtil;
 import com.dasannetworks.vn.tms.controller.BaseController;
 import com.dasannetworks.vn.tms.pojo.DevicePOJO;
 import com.dasannetworks.vn.tms.service.DeviceSearchInput;
+import com.dasannetworks.vn.tms.service.DeviceService;
 import com.dasannetworks.vn.tms.service.ExcelService;
 import com.dasannetworks.vn.tms.service.ImportDeviceListService.DeviceListInputFile;
 import com.dasannetworks.vn.tms.service.ImportDeviceListService.DeviceListInputRow;
-import com.dasannetworks.vn.tms.util.DeviceUtil;
 import com.dasannetworks.vn.tms.util.JsonServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -92,25 +92,21 @@ public class CheckDeviceWarrantyController extends BaseController {
 	}
 
 	@ResourceMapping("getAllDevices")
-	public void getAllStudents(ResourceRequest request, ResourceResponse response) {
-		LOGGER.info("getAllDevices()");
-		PrintWriter writer = null;
-		List<Device> studentList = null;
+	public void getAllDevices(ResourceRequest request, ResourceResponse response) throws IOException {
+		List<Device> deviceList = null;
 
 		try {
-			writer = response.getWriter();
-			// Fetch students
-			LOGGER.info("Getting all device list");
-			studentList = DeviceLocalServiceUtil.getDevices(0, DeviceLocalServiceUtil.getDevicesCount());
+			deviceList = DeviceLocalServiceUtil.getDevices(0, DeviceLocalServiceUtil.getDevicesCount());
 		} catch (Exception e) {
 			LOGGER.error("Error while getting all devices", e);
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
+		List<DevicePOJO> deviceVOList = DeviceService.getDeviceVOList(deviceList);
+		map.put("aaData", deviceVOList);
 
-		List<DevicePOJO> studentVOList = DeviceUtil.getDeviceVOList(studentList);
-
-		map.put("aaData", studentVOList);
+		PrintWriter writer = null;
+		writer = response.getWriter();
 		JsonServiceUtil.writeJson(writer, map);
 	}
 
@@ -128,11 +124,48 @@ public class CheckDeviceWarrantyController extends BaseController {
 		try {
 			deviceList = searchDeviceList(exactly, serialNumber, macAddress);
 		} catch (Exception e) {
-			LOGGER.error("Error while getting all devices", e);
+			LOGGER.error("Error while checking devices", e);
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<DevicePOJO> listDevicePOJO = DeviceUtil.getDeviceVOList(deviceList);
+		List<DevicePOJO> listDevicePOJO = DeviceService.getDeviceVOList(deviceList);
+		map.put("deviceList", listDevicePOJO);
+
+		PrintWriter writer = null;
+		writer = resourceResponse.getWriter();
+		JsonServiceUtil.writeJson(writer, map);
+	}
+
+	@ResourceMapping("checkDevicesWithExcel")
+	public void checkDevicesWithExcel(
+			ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException, PortletException, SystemException {
+
+		UploadRequest uploadRequest = PortalUtil.getUploadPortletRequest(resourceRequest);
+		Set<Device> hsDevices = new HashSet<Device>();
+		if (uploadRequest != null) {
+			File objFile = uploadRequest.getFile("fileExcel");
+
+			if (objFile != null) {
+				DeviceListInputFile deviceListInputFile = ExcelService.parseDeviceList(objFile);
+
+				List<DeviceListInputRow> rows = deviceListInputFile.getRows();
+
+				LOGGER.info("Excel rows: " + rows.size());
+
+				List<Device> tmpDevices = null;
+				for (DeviceListInputRow deviceListInputRow : rows) {
+					tmpDevices = searchDeviceList(true, deviceListInputRow.getSerialNumber(), deviceListInputRow.getMacAddress());
+					if (!CollectionUtils.isEmpty(tmpDevices)) {
+						hsDevices.addAll(tmpDevices);
+					}
+				}
+			}
+		}
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Device> tmpDevices = new ArrayList<>(hsDevices);
+		List<DevicePOJO> listDevicePOJO = DeviceService.getDeviceVOList(tmpDevices);
 		map.put("deviceList", listDevicePOJO);
 
 		PrintWriter writer = null;
@@ -155,43 +188,6 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 		deviceList = DeviceLocalServiceUtil.search(deviceSearchInput);
 		return deviceList;
-	}
-
-	@ResourceMapping("checkDevicesWithExcel")
-	public void checkDevicesWithExcel(
-			ResourceRequest resourceRequest,
-			ResourceResponse resourceResponse) throws IOException, PortletException, SystemException {
-
-		UploadRequest uploadRequest = PortalUtil.getUploadPortletRequest(resourceRequest);
-		Set<Device> hsDevices = new HashSet<Device>();
-		if (uploadRequest != null) {
-			File objFile = uploadRequest.getFile("fileExcel");
-
-			if (objFile != null) {
-				DeviceListInputFile deviceListInputFile = ExcelService.parseDeviceList(objFile);
-
-				List<DeviceListInputRow> rows = deviceListInputFile.getRows();
-
-				LOGGER.info("rows: " + rows.size());
-
-				List<Device> tmpDevices = null;
-				for (DeviceListInputRow deviceListInputRow : rows) {
-					tmpDevices = searchDeviceList(true, deviceListInputRow.getSerialNumber(), deviceListInputRow.getMacAddress());
-					if (!CollectionUtils.isEmpty(tmpDevices)) {
-						hsDevices.addAll(tmpDevices);
-					}
-				}
-			}
-		}
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<Device> tmpDevices = new ArrayList<>(hsDevices);
-		List<DevicePOJO> listDevicePOJO = DeviceUtil.getDeviceVOList(tmpDevices);
-		map.put("deviceList", listDevicePOJO);
-
-		PrintWriter writer = null;
-		writer = resourceResponse.getWriter();
-		JsonServiceUtil.writeJson(writer, map);
 	}
 
 }

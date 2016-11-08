@@ -23,6 +23,9 @@ import java.util.Date;
 public class PurchaseOrderCacheModel implements CacheModel<PurchaseOrder>,
     Externalizable {
     public long purchaseOrderId;
+    public long companyId;
+    public long userId;
+    public String userName;
     public long createDate;
     public long modifiedDate;
     public String customer;
@@ -31,10 +34,16 @@ public class PurchaseOrderCacheModel implements CacheModel<PurchaseOrder>,
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{purchaseOrderId=");
         sb.append(purchaseOrderId);
+        sb.append(", companyId=");
+        sb.append(companyId);
+        sb.append(", userId=");
+        sb.append(userId);
+        sb.append(", userName=");
+        sb.append(userName);
         sb.append(", createDate=");
         sb.append(createDate);
         sb.append(", modifiedDate=");
@@ -55,6 +64,14 @@ public class PurchaseOrderCacheModel implements CacheModel<PurchaseOrder>,
         PurchaseOrderImpl purchaseOrderImpl = new PurchaseOrderImpl();
 
         purchaseOrderImpl.setPurchaseOrderId(purchaseOrderId);
+        purchaseOrderImpl.setCompanyId(companyId);
+        purchaseOrderImpl.setUserId(userId);
+
+        if (userName == null) {
+            purchaseOrderImpl.setUserName(StringPool.BLANK);
+        } else {
+            purchaseOrderImpl.setUserName(userName);
+        }
 
         if (createDate == Long.MIN_VALUE) {
             purchaseOrderImpl.setCreateDate(null);
@@ -94,6 +111,9 @@ public class PurchaseOrderCacheModel implements CacheModel<PurchaseOrder>,
     @Override
     public void readExternal(ObjectInput objectInput) throws IOException {
         purchaseOrderId = objectInput.readLong();
+        companyId = objectInput.readLong();
+        userId = objectInput.readLong();
+        userName = objectInput.readUTF();
         createDate = objectInput.readLong();
         modifiedDate = objectInput.readLong();
         customer = objectInput.readUTF();
@@ -105,6 +125,15 @@ public class PurchaseOrderCacheModel implements CacheModel<PurchaseOrder>,
     public void writeExternal(ObjectOutput objectOutput)
         throws IOException {
         objectOutput.writeLong(purchaseOrderId);
+        objectOutput.writeLong(companyId);
+        objectOutput.writeLong(userId);
+
+        if (userName == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(userName);
+        }
+
         objectOutput.writeLong(createDate);
         objectOutput.writeLong(modifiedDate);
 

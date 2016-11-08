@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class PurchaseOrderSoap implements Serializable {
     private long _purchaseOrderId;
+    private long _companyId;
+    private long _userId;
+    private String _userName;
     private Date _createDate;
     private Date _modifiedDate;
     private String _customer;
@@ -28,6 +31,9 @@ public class PurchaseOrderSoap implements Serializable {
         PurchaseOrderSoap soapModel = new PurchaseOrderSoap();
 
         soapModel.setPurchaseOrderId(model.getPurchaseOrderId());
+        soapModel.setCompanyId(model.getCompanyId());
+        soapModel.setUserId(model.getUserId());
+        soapModel.setUserName(model.getUserName());
         soapModel.setCreateDate(model.getCreateDate());
         soapModel.setModifiedDate(model.getModifiedDate());
         soapModel.setCustomer(model.getCustomer());
@@ -87,6 +93,30 @@ public class PurchaseOrderSoap implements Serializable {
 
     public void setPurchaseOrderId(long purchaseOrderId) {
         _purchaseOrderId = purchaseOrderId;
+    }
+
+    public long getCompanyId() {
+        return _companyId;
+    }
+
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+    }
+
+    public long getUserId() {
+        return _userId;
+    }
+
+    public void setUserId(long userId) {
+        _userId = userId;
+    }
+
+    public String getUserName() {
+        return _userName;
+    }
+
+    public void setUserName(String userName) {
+        _userName = userName;
     }
 
     public Date getCreateDate() {

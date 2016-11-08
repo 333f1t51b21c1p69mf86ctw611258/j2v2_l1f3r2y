@@ -1,6 +1,8 @@
 package com.dasannetworks.vn.sb.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -24,7 +26,8 @@ import java.util.Date;
  * @see com.dasannetworks.vn.sb.model.impl.PurchaseOrderModelImpl
  * @generated
  */
-public interface PurchaseOrderModel extends BaseModel<PurchaseOrder> {
+public interface PurchaseOrderModel extends AuditedModel,
+    BaseModel<PurchaseOrder> {
     /*
      * NOTE FOR DEVELOPERS:
      *
@@ -60,10 +63,77 @@ public interface PurchaseOrderModel extends BaseModel<PurchaseOrder> {
     public void setPurchaseOrderId(long purchaseOrderId);
 
     /**
+     * Returns the company ID of this purchase order.
+     *
+     * @return the company ID of this purchase order
+     */
+    @Override
+    public long getCompanyId();
+
+    /**
+     * Sets the company ID of this purchase order.
+     *
+     * @param companyId the company ID of this purchase order
+     */
+    @Override
+    public void setCompanyId(long companyId);
+
+    /**
+     * Returns the user ID of this purchase order.
+     *
+     * @return the user ID of this purchase order
+     */
+    @Override
+    public long getUserId();
+
+    /**
+     * Sets the user ID of this purchase order.
+     *
+     * @param userId the user ID of this purchase order
+     */
+    @Override
+    public void setUserId(long userId);
+
+    /**
+     * Returns the user uuid of this purchase order.
+     *
+     * @return the user uuid of this purchase order
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public String getUserUuid() throws SystemException;
+
+    /**
+     * Sets the user uuid of this purchase order.
+     *
+     * @param userUuid the user uuid of this purchase order
+     */
+    @Override
+    public void setUserUuid(String userUuid);
+
+    /**
+     * Returns the user name of this purchase order.
+     *
+     * @return the user name of this purchase order
+     */
+    @AutoEscape
+    @Override
+    public String getUserName();
+
+    /**
+     * Sets the user name of this purchase order.
+     *
+     * @param userName the user name of this purchase order
+     */
+    @Override
+    public void setUserName(String userName);
+
+    /**
      * Returns the create date of this purchase order.
      *
      * @return the create date of this purchase order
      */
+    @Override
     public Date getCreateDate();
 
     /**
@@ -71,6 +141,7 @@ public interface PurchaseOrderModel extends BaseModel<PurchaseOrder> {
      *
      * @param createDate the create date of this purchase order
      */
+    @Override
     public void setCreateDate(Date createDate);
 
     /**
@@ -78,6 +149,7 @@ public interface PurchaseOrderModel extends BaseModel<PurchaseOrder> {
      *
      * @return the modified date of this purchase order
      */
+    @Override
     public Date getModifiedDate();
 
     /**
@@ -85,6 +157,7 @@ public interface PurchaseOrderModel extends BaseModel<PurchaseOrder> {
      *
      * @param modifiedDate the modified date of this purchase order
      */
+    @Override
     public void setModifiedDate(Date modifiedDate);
 
     /**

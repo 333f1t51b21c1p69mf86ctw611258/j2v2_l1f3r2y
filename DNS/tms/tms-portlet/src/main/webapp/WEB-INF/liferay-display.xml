@@ -9,5 +9,6 @@
 	</category>
 	<category name="TMS">
 		<portlet id="check-device-warranty" />
+		<portlet id="hand-over-form-mng" />
 	</category>
 </display>

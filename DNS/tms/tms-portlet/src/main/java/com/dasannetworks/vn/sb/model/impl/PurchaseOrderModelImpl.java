@@ -5,6 +5,7 @@ import com.dasannetworks.vn.sb.model.PurchaseOrderModel;
 import com.dasannetworks.vn.sb.model.PurchaseOrderSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -13,6 +14,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -51,13 +53,16 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
     public static final String TABLE_NAME = "tms_PurchaseOrder";
     public static final Object[][] TABLE_COLUMNS = {
             { "purchaseOrderId", Types.BIGINT },
+            { "companyId", Types.BIGINT },
+            { "userId", Types.BIGINT },
+            { "userName", Types.VARCHAR },
             { "createDate", Types.TIMESTAMP },
             { "modifiedDate", Types.TIMESTAMP },
             { "customer", Types.VARCHAR },
             { "signDate", Types.TIMESTAMP },
             { "purchaseOrderNumber", Types.VARCHAR }
         };
-    public static final String TABLE_SQL_CREATE = "create table tms_PurchaseOrder (purchaseOrderId LONG not null primary key,createDate DATE null,modifiedDate DATE null,customer VARCHAR(75) null,signDate DATE null,purchaseOrderNumber VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table tms_PurchaseOrder (purchaseOrderId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,customer VARCHAR(75) null,signDate DATE null,purchaseOrderNumber VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table tms_PurchaseOrder";
     public static final String ORDER_BY_JPQL = " ORDER BY purchaseOrder.purchaseOrderId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY tms_PurchaseOrder.purchaseOrderId ASC";
@@ -82,6 +87,10 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
             PurchaseOrder.class
         };
     private long _purchaseOrderId;
+    private long _companyId;
+    private long _userId;
+    private String _userUuid;
+    private String _userName;
     private Date _createDate;
     private Date _modifiedDate;
     private String _customer;
@@ -108,6 +117,9 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
         PurchaseOrder model = new PurchaseOrderImpl();
 
         model.setPurchaseOrderId(soapModel.getPurchaseOrderId());
+        model.setCompanyId(soapModel.getCompanyId());
+        model.setUserId(soapModel.getUserId());
+        model.setUserName(soapModel.getUserName());
         model.setCreateDate(soapModel.getCreateDate());
         model.setModifiedDate(soapModel.getModifiedDate());
         model.setCustomer(soapModel.getCustomer());
@@ -172,6 +184,9 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("purchaseOrderId", getPurchaseOrderId());
+        attributes.put("companyId", getCompanyId());
+        attributes.put("userId", getUserId());
+        attributes.put("userName", getUserName());
         attributes.put("createDate", getCreateDate());
         attributes.put("modifiedDate", getModifiedDate());
         attributes.put("customer", getCustomer());
@@ -187,6 +202,24 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
 
         if (purchaseOrderId != null) {
             setPurchaseOrderId(purchaseOrderId);
+        }
+
+        Long companyId = (Long) attributes.get("companyId");
+
+        if (companyId != null) {
+            setCompanyId(companyId);
+        }
+
+        Long userId = (Long) attributes.get("userId");
+
+        if (userId != null) {
+            setUserId(userId);
+        }
+
+        String userName = (String) attributes.get("userName");
+
+        if (userName != null) {
+            setUserName(userName);
         }
 
         Date createDate = (Date) attributes.get("createDate");
@@ -230,6 +263,53 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
     @Override
     public void setPurchaseOrderId(long purchaseOrderId) {
         _purchaseOrderId = purchaseOrderId;
+    }
+
+    @JSON
+    @Override
+    public long getCompanyId() {
+        return _companyId;
+    }
+
+    @Override
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+    }
+
+    @JSON
+    @Override
+    public long getUserId() {
+        return _userId;
+    }
+
+    @Override
+    public void setUserId(long userId) {
+        _userId = userId;
+    }
+
+    @Override
+    public String getUserUuid() throws SystemException {
+        return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+    }
+
+    @Override
+    public void setUserUuid(String userUuid) {
+        _userUuid = userUuid;
+    }
+
+    @JSON
+    @Override
+    public String getUserName() {
+        if (_userName == null) {
+            return StringPool.BLANK;
+        } else {
+            return _userName;
+        }
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        _userName = userName;
     }
 
     @JSON
@@ -311,7 +391,7 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
 
     @Override
     public ExpandoBridge getExpandoBridge() {
-        return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+        return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
             PurchaseOrder.class.getName(), getPrimaryKey());
     }
 
@@ -337,6 +417,9 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
         PurchaseOrderImpl purchaseOrderImpl = new PurchaseOrderImpl();
 
         purchaseOrderImpl.setPurchaseOrderId(getPurchaseOrderId());
+        purchaseOrderImpl.setCompanyId(getCompanyId());
+        purchaseOrderImpl.setUserId(getUserId());
+        purchaseOrderImpl.setUserName(getUserName());
         purchaseOrderImpl.setCreateDate(getCreateDate());
         purchaseOrderImpl.setModifiedDate(getModifiedDate());
         purchaseOrderImpl.setCustomer(getCustomer());
@@ -402,6 +485,18 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
 
         purchaseOrderCacheModel.purchaseOrderId = getPurchaseOrderId();
 
+        purchaseOrderCacheModel.companyId = getCompanyId();
+
+        purchaseOrderCacheModel.userId = getUserId();
+
+        purchaseOrderCacheModel.userName = getUserName();
+
+        String userName = purchaseOrderCacheModel.userName;
+
+        if ((userName != null) && (userName.length() == 0)) {
+            purchaseOrderCacheModel.userName = null;
+        }
+
         Date createDate = getCreateDate();
 
         if (createDate != null) {
@@ -448,10 +543,16 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{purchaseOrderId=");
         sb.append(getPurchaseOrderId());
+        sb.append(", companyId=");
+        sb.append(getCompanyId());
+        sb.append(", userId=");
+        sb.append(getUserId());
+        sb.append(", userName=");
+        sb.append(getUserName());
         sb.append(", createDate=");
         sb.append(getCreateDate());
         sb.append(", modifiedDate=");
@@ -469,7 +570,7 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(22);
+        StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
         sb.append("com.dasannetworks.vn.sb.model.PurchaseOrder");
@@ -478,6 +579,18 @@ public class PurchaseOrderModelImpl extends BaseModelImpl<PurchaseOrder>
         sb.append(
             "<column><column-name>purchaseOrderId</column-name><column-value><![CDATA[");
         sb.append(getPurchaseOrderId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>companyId</column-name><column-value><![CDATA[");
+        sb.append(getCompanyId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>userId</column-name><column-value><![CDATA[");
+        sb.append(getUserId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>userName</column-name><column-value><![CDATA[");
+        sb.append(getUserName());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>createDate</column-name><column-value><![CDATA[");
