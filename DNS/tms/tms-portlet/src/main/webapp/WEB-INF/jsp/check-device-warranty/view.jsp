@@ -57,7 +57,9 @@
 					    </div>
 					</td>
 					<td>
-						<button id="btnCheck1" type="submit" class="btn btn-default">Check</button>
+						<button id="btnCheck1"  type="submit" class="btn btn-primary">
+							<i class="icon-ok icon-white"></i> Check
+						</button>
 					</td>
 				</tr>
 			</table>
@@ -85,7 +87,9 @@
 <!-- 					    </div> -->
 					</td>
 					<td>
-						<button id="btnCheck2" type="submit" class="btn btn-default">Check</button>
+						<button id="btnCheck2"  type="submit" class="btn btn-primary">
+							<i class="icon-ok icon-white"></i> Check
+						</button>
 					</td>
 				</tr>
 			</table>
@@ -104,9 +108,10 @@
 				<th><spring:message code="label.modelName" /></th>
 				<th><spring:message code="label.serialNumber" /></th>
 				<th><spring:message code="label.macAddress" /></th>
-				<th>Factory Out</th>
-				<th>Warranty Start Date</th>
-				<th>Warranty End Date</th>
+				<th><spring:message code="label.factoryOut" /></th>
+				<th><spring:message code="label.warrantyStartDate" /></th>
+				<th><spring:message code="label.warrantyEndDate" /></th>
+				<th>Warranty Status</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -114,9 +119,10 @@
 				<th><spring:message code="label.modelName" /></th>
 				<th><spring:message code="label.serialNumber" /></th>
 				<th><spring:message code="label.macAddress" /></th>
-				<th>Factory Out</th>
-				<th>Warranty Start Date</th>
-				<th>Warranty End Date</th>
+				<th><spring:message code="label.factoryOut" /></th>
+				<th><spring:message code="label.warrantyStartDate" /></th>
+				<th><spring:message code="label.warrantyEndDate" /></th>
+				<th>Warranty Status</th>
 			</tr>
 		</tfoot>
 		<tbody>
@@ -147,6 +153,17 @@
 				"mData" : "_warrantyStartDate"
 			}, {
 				"mData" : "_warrantyEndDate"
+			}, {
+				"mData" : "expired",
+				"bSortable" : false,
+				"bSearchable" : false,
+				"mRender" : function(data, type, full) {
+					if (data == false) {
+						return "<div style='text-align: center;'><a href='#' class='bs-tooltip'><i class='icon-ok'></i></a></div>";	
+					} else {
+						return "<div style='text-align: center;'><i class='icon-remove'></i></div>";
+					}
+				}
 			} ]
 		});
 		
@@ -185,7 +202,8 @@
 								_macAddress : element._macAddress,
 								_factoryOut : element._factoryOut,
 								_warrantyStartDate : element._warrantyStartDate,
-								_warrantyEndDate : element._warrantyEndDate
+								_warrantyEndDate : element._warrantyEndDate,
+								expired : element.expired
 							});
 						});
 						
@@ -226,7 +244,8 @@
 								_macAddress : element._macAddress,
 								_factoryOut : element._factoryOut,
 								_warrantyStartDate : element._warrantyStartDate,
-								_warrantyEndDate : element._warrantyEndDate
+								_warrantyEndDate : element._warrantyEndDate,
+								expired : element.expired
 							});
 						});
 						

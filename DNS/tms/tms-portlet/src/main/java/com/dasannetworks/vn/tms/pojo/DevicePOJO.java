@@ -28,6 +28,16 @@ public class DevicePOJO {
 	private Date _warrantyStartDate;
 	private Date _warrantyEndDate;
 	private long _purchaseOrderId;
+	
+	private boolean expired = false;	
+
+	public boolean isExpired() {
+		return expired;
+	}
+
+	public void setExpired(boolean expired) {
+		this.expired = expired;
+	}
 
 	public DevicePOJO() {
 	}

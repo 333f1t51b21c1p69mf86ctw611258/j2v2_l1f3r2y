@@ -1,6 +1,7 @@
 package com.dasannetworks.vn.tms.util;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -27,18 +28,26 @@ public class DeviceUtil {
 	 * @return
 	 */
 	public static List<DevicePOJO> getDeviceVOList(List<Device> studentList) {
-		List<DevicePOJO> studentVOList = new ArrayList<DevicePOJO>();
+		List<DevicePOJO> devicePOJOList = new ArrayList<DevicePOJO>();
 		if (studentList != null && !studentList.isEmpty()) {
 			LOGGER.info("Device Size is " + studentList.size());
-			// Copy list to all student view
-			DevicePOJO studentVO = null;
+			
+			DevicePOJO devicePOJO = null;
 			for (Device student : studentList) {
-				studentVO = new DevicePOJO();
-				BeanUtils.copyProperties(student, studentVO);
-				studentVOList.add(studentVO);
+				devicePOJO = new DevicePOJO();
+				BeanUtils.copyProperties(student, devicePOJO);
+				
+				Date now = new Date();
+				if (devicePOJO.getWarrantyEndDate() == null || !now.after(devicePOJO.getWarrantyEndDate())) {
+					devicePOJO.setExpired(false);
+				} else {
+					devicePOJO.setExpired(true);
+				}
+				
+				devicePOJOList.add(devicePOJO);
 			}
-			LOGGER.info("Device View list size " + studentVOList.size());
+			LOGGER.info("Device View list size " + devicePOJOList.size());
 		}
-		return studentVOList;
+		return devicePOJOList;
 	}
 }
