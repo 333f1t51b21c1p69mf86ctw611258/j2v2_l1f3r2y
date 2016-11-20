@@ -4,6 +4,8 @@ import com.dasannetworks.vn.sb.model.PurchaseOrder;
 import com.dasannetworks.vn.sb.service.PurchaseOrderService;
 import com.dasannetworks.vn.sb.service.persistence.ContactPersistence;
 import com.dasannetworks.vn.sb.service.persistence.DevicePersistence;
+import com.dasannetworks.vn.sb.service.persistence.HandOverDevicePersistence;
+import com.dasannetworks.vn.sb.service.persistence.HandOverFormPersistence;
 import com.dasannetworks.vn.sb.service.persistence.PurchaseOrderPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -42,6 +44,16 @@ public abstract class PurchaseOrderServiceBaseImpl extends BaseServiceImpl
     protected com.dasannetworks.vn.sb.service.DeviceService deviceService;
     @BeanReference(type = DevicePersistence.class)
     protected DevicePersistence devicePersistence;
+    @BeanReference(type = com.dasannetworks.vn.sb.service.HandOverDeviceService.class)
+    protected com.dasannetworks.vn.sb.service.HandOverDeviceService handOverDeviceService;
+    @BeanReference(type = HandOverDevicePersistence.class)
+    protected HandOverDevicePersistence handOverDevicePersistence;
+    @BeanReference(type = com.dasannetworks.vn.sb.service.HandOverFormLocalService.class)
+    protected com.dasannetworks.vn.sb.service.HandOverFormLocalService handOverFormLocalService;
+    @BeanReference(type = com.dasannetworks.vn.sb.service.HandOverFormService.class)
+    protected com.dasannetworks.vn.sb.service.HandOverFormService handOverFormService;
+    @BeanReference(type = HandOverFormPersistence.class)
+    protected HandOverFormPersistence handOverFormPersistence;
     @BeanReference(type = com.dasannetworks.vn.sb.service.PurchaseOrderLocalService.class)
     protected com.dasannetworks.vn.sb.service.PurchaseOrderLocalService purchaseOrderLocalService;
     @BeanReference(type = com.dasannetworks.vn.sb.service.PurchaseOrderService.class)
@@ -178,6 +190,101 @@ public abstract class PurchaseOrderServiceBaseImpl extends BaseServiceImpl
      */
     public void setDevicePersistence(DevicePersistence devicePersistence) {
         this.devicePersistence = devicePersistence;
+    }
+
+    /**
+     * Returns the hand over device remote service.
+     *
+     * @return the hand over device remote service
+     */
+    public com.dasannetworks.vn.sb.service.HandOverDeviceService getHandOverDeviceService() {
+        return handOverDeviceService;
+    }
+
+    /**
+     * Sets the hand over device remote service.
+     *
+     * @param handOverDeviceService the hand over device remote service
+     */
+    public void setHandOverDeviceService(
+        com.dasannetworks.vn.sb.service.HandOverDeviceService handOverDeviceService) {
+        this.handOverDeviceService = handOverDeviceService;
+    }
+
+    /**
+     * Returns the hand over device persistence.
+     *
+     * @return the hand over device persistence
+     */
+    public HandOverDevicePersistence getHandOverDevicePersistence() {
+        return handOverDevicePersistence;
+    }
+
+    /**
+     * Sets the hand over device persistence.
+     *
+     * @param handOverDevicePersistence the hand over device persistence
+     */
+    public void setHandOverDevicePersistence(
+        HandOverDevicePersistence handOverDevicePersistence) {
+        this.handOverDevicePersistence = handOverDevicePersistence;
+    }
+
+    /**
+     * Returns the hand over form local service.
+     *
+     * @return the hand over form local service
+     */
+    public com.dasannetworks.vn.sb.service.HandOverFormLocalService getHandOverFormLocalService() {
+        return handOverFormLocalService;
+    }
+
+    /**
+     * Sets the hand over form local service.
+     *
+     * @param handOverFormLocalService the hand over form local service
+     */
+    public void setHandOverFormLocalService(
+        com.dasannetworks.vn.sb.service.HandOverFormLocalService handOverFormLocalService) {
+        this.handOverFormLocalService = handOverFormLocalService;
+    }
+
+    /**
+     * Returns the hand over form remote service.
+     *
+     * @return the hand over form remote service
+     */
+    public com.dasannetworks.vn.sb.service.HandOverFormService getHandOverFormService() {
+        return handOverFormService;
+    }
+
+    /**
+     * Sets the hand over form remote service.
+     *
+     * @param handOverFormService the hand over form remote service
+     */
+    public void setHandOverFormService(
+        com.dasannetworks.vn.sb.service.HandOverFormService handOverFormService) {
+        this.handOverFormService = handOverFormService;
+    }
+
+    /**
+     * Returns the hand over form persistence.
+     *
+     * @return the hand over form persistence
+     */
+    public HandOverFormPersistence getHandOverFormPersistence() {
+        return handOverFormPersistence;
+    }
+
+    /**
+     * Sets the hand over form persistence.
+     *
+     * @param handOverFormPersistence the hand over form persistence
+     */
+    public void setHandOverFormPersistence(
+        HandOverFormPersistence handOverFormPersistence) {
+        this.handOverFormPersistence = handOverFormPersistence;
     }
 
     /**

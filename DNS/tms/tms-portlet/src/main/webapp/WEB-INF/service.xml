@@ -107,7 +107,7 @@
 		</finder>
 	</entity>
 
-	<entity name="HandOverDevice">
+	<entity name="HandOverDevice" cache-enabled="false">
 		<!-- PK fields -->
 
 		<column name="handOverFormId" type="long" primary="true"></column>

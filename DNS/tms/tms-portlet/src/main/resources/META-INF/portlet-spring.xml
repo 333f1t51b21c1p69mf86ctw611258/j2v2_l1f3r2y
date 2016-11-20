@@ -7,6 +7,11 @@
 	<bean id="com.dasannetworks.vn.sb.service.DeviceLocalService" class="com.dasannetworks.vn.sb.service.impl.DeviceLocalServiceImpl" />
 	<bean id="com.dasannetworks.vn.sb.service.DeviceService" class="com.dasannetworks.vn.sb.service.impl.DeviceServiceImpl" />
 	<bean id="com.dasannetworks.vn.sb.service.persistence.DevicePersistence" class="com.dasannetworks.vn.sb.service.persistence.DevicePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.HandOverDeviceService" class="com.dasannetworks.vn.sb.service.impl.HandOverDeviceServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.HandOverDevicePersistence" class="com.dasannetworks.vn.sb.service.persistence.HandOverDevicePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.HandOverFormLocalService" class="com.dasannetworks.vn.sb.service.impl.HandOverFormLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.HandOverFormService" class="com.dasannetworks.vn.sb.service.impl.HandOverFormServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.HandOverFormPersistence" class="com.dasannetworks.vn.sb.service.persistence.HandOverFormPersistenceImpl" parent="basePersistence" />
 	<bean id="com.dasannetworks.vn.sb.service.PurchaseOrderLocalService" class="com.dasannetworks.vn.sb.service.impl.PurchaseOrderLocalServiceImpl" />
 	<bean id="com.dasannetworks.vn.sb.service.PurchaseOrderService" class="com.dasannetworks.vn.sb.service.impl.PurchaseOrderServiceImpl" />
 	<bean id="com.dasannetworks.vn.sb.service.persistence.PurchaseOrderPersistence" class="com.dasannetworks.vn.sb.service.persistence.PurchaseOrderPersistenceImpl" parent="basePersistence" />

@@ -9,30 +9,30 @@ import java.util.Arrays;
  * @generated
  */
 public class ContactServiceClpInvoker {
-    private String _methodName30;
-    private String[] _methodParameterTypes30;
-    private String _methodName31;
-    private String[] _methodParameterTypes31;
+    private String _methodName40;
+    private String[] _methodParameterTypes40;
+    private String _methodName41;
+    private String[] _methodParameterTypes41;
 
     public ContactServiceClpInvoker() {
-        _methodName30 = "getBeanIdentifier";
+        _methodName40 = "getBeanIdentifier";
 
-        _methodParameterTypes30 = new String[] {  };
+        _methodParameterTypes40 = new String[] {  };
 
-        _methodName31 = "setBeanIdentifier";
+        _methodName41 = "setBeanIdentifier";
 
-        _methodParameterTypes31 = new String[] { "java.lang.String" };
+        _methodParameterTypes41 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
         Object[] arguments) throws Throwable {
-        if (_methodName30.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+        if (_methodName40.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
             return ContactServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName31.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+        if (_methodName41.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
             ContactServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;

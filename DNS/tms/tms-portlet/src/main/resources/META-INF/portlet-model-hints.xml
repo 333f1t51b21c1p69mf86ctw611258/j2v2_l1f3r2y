@@ -30,8 +30,40 @@
 		<field name="warrantyEndDate" type="Date" />
 		<field name="purchaseOrderId" type="long" />
 	</model>
+	<model name="com.dasannetworks.vn.sb.model.HandOverDevice">
+		<field name="handOverFormId" type="long" />
+		<field name="deviceId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="faultNote" type="String" />
+		<field name="status" type="String" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.HandOverForm">
+		<field name="handOverFormId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="customerCode" type="String" />
+		<field name="contactPoint" type="String" />
+		<field name="email" type="String" />
+		<field name="phone" type="String" />
+		<field name="location" type="String" />
+		<field name="personInCharge" type="String" />
+		<field name="handOverFormNumber" type="String" />
+		<field name="note" type="String" />
+		<field name="assignDate" type="Date" />
+		<field name="estimatedReturnDate" type="Date" />
+	</model>
 	<model name="com.dasannetworks.vn.sb.model.PurchaseOrder">
 		<field name="purchaseOrderId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="customer" type="String" />

@@ -29,8 +29,43 @@ create table tms_Device (
 	purchaseOrderId LONG
 );
 
+create table tms_HandOverDevice (
+	handOverFormId LONG not null,
+	deviceId LONG not null,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	faultNote VARCHAR(75) null,
+	status VARCHAR(75) null,
+	primary key (handOverFormId, deviceId)
+);
+
+create table tms_HandOverForm (
+	handOverFormId LONG not null primary key,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	customerCode VARCHAR(75) null,
+	contactPoint VARCHAR(75) null,
+	email VARCHAR(75) null,
+	phone VARCHAR(75) null,
+	location VARCHAR(75) null,
+	personInCharge VARCHAR(75) null,
+	handOverFormNumber VARCHAR(75) null,
+	note VARCHAR(75) null,
+	assignDate DATE null,
+	estimatedReturnDate DATE null
+);
+
 create table tms_PurchaseOrder (
 	purchaseOrderId LONG not null primary key,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
 	customer VARCHAR(75) null,

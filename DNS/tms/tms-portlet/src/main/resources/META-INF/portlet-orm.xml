@@ -61,9 +61,66 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.HandOverDeviceModelImpl">
+		<id-class class="com.dasannetworks.vn.sb.service.persistence.HandOverDevicePK" />
+		<attributes>
+			<id name="handOverFormId" />
+			<id name="deviceId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="faultNote" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.HandOverFormModelImpl">
+		<attributes>
+			<id name="handOverFormId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="customerCode" />
+			<basic name="contactPoint" />
+			<basic name="email" />
+			<basic name="phone" />
+			<basic name="location" />
+			<basic name="personInCharge" />
+			<basic name="handOverFormNumber" />
+			<basic name="note" />
+			<basic name="assignDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="estimatedReturnDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.PurchaseOrderModelImpl">
 		<attributes>
 			<id name="purchaseOrderId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -78,6 +135,7 @@
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.dasannetworks.vn.sb.model.impl.ContactImpl" name="Contact">
@@ -86,6 +144,14 @@
 	</entity>
 	<entity class="com.dasannetworks.vn.sb.model.impl.DeviceImpl" name="Device">
 		<table name="tms_Device" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.HandOverDeviceImpl" name="HandOverDevice">
+		<table name="tms_HandOverDevice" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.HandOverFormImpl" name="HandOverForm">
+		<table name="tms_HandOverForm" />
 		<attributes />
 	</entity>
 	<entity class="com.dasannetworks.vn.sb.model.impl.PurchaseOrderImpl" name="PurchaseOrder">

@@ -41,12 +41,12 @@ public class PurchaseOrderLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName46;
-    private String[] _methodParameterTypes46;
-    private String _methodName47;
-    private String[] _methodParameterTypes47;
-    private String _methodName52;
-    private String[] _methodParameterTypes52;
+    private String _methodName56;
+    private String[] _methodParameterTypes56;
+    private String _methodName57;
+    private String[] _methodParameterTypes57;
+    private String _methodName62;
+    private String[] _methodParameterTypes62;
 
     public PurchaseOrderLocalServiceClpInvoker() {
         _methodName0 = "addPurchaseOrder";
@@ -131,17 +131,17 @@ public class PurchaseOrderLocalServiceClpInvoker {
                 "com.dasannetworks.vn.sb.model.PurchaseOrder"
             };
 
-        _methodName46 = "getBeanIdentifier";
+        _methodName56 = "getBeanIdentifier";
 
-        _methodParameterTypes46 = new String[] {  };
+        _methodParameterTypes56 = new String[] {  };
 
-        _methodName47 = "setBeanIdentifier";
+        _methodName57 = "setBeanIdentifier";
 
-        _methodParameterTypes47 = new String[] { "java.lang.String" };
+        _methodParameterTypes57 = new String[] { "java.lang.String" };
 
-        _methodName52 = "getByPurchaseOrderNumber";
+        _methodName62 = "getByPurchaseOrderNumber";
 
-        _methodParameterTypes52 = new String[] { "java.lang.String" };
+        _methodParameterTypes62 = new String[] { "java.lang.String" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -233,20 +233,20 @@ public class PurchaseOrderLocalServiceClpInvoker {
             return PurchaseOrderLocalServiceUtil.updatePurchaseOrder((com.dasannetworks.vn.sb.model.PurchaseOrder) arguments[0]);
         }
 
-        if (_methodName46.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+        if (_methodName56.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
             return PurchaseOrderLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName47.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+        if (_methodName57.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
             PurchaseOrderLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
         }
 
-        if (_methodName52.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+        if (_methodName62.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
             return PurchaseOrderLocalServiceUtil.getByPurchaseOrderNumber((java.lang.String) arguments[0]);
         }
 

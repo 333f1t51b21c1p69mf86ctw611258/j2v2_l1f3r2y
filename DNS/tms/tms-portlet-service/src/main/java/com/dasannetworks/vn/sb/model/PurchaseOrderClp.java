@@ -9,6 +9,7 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
@@ -22,6 +23,10 @@ import java.util.Map;
 public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
     implements PurchaseOrder {
     private long _purchaseOrderId;
+    private long _companyId;
+    private long _userId;
+    private String _userUuid;
+    private String _userName;
     private Date _createDate;
     private Date _modifiedDate;
     private String _customer;
@@ -68,6 +73,9 @@ public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
         Map<String, Object> attributes = new HashMap<String, Object>();
 
         attributes.put("purchaseOrderId", getPurchaseOrderId());
+        attributes.put("companyId", getCompanyId());
+        attributes.put("userId", getUserId());
+        attributes.put("userName", getUserName());
         attributes.put("createDate", getCreateDate());
         attributes.put("modifiedDate", getModifiedDate());
         attributes.put("customer", getCustomer());
@@ -83,6 +91,24 @@ public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
 
         if (purchaseOrderId != null) {
             setPurchaseOrderId(purchaseOrderId);
+        }
+
+        Long companyId = (Long) attributes.get("companyId");
+
+        if (companyId != null) {
+            setCompanyId(companyId);
+        }
+
+        Long userId = (Long) attributes.get("userId");
+
+        if (userId != null) {
+            setUserId(userId);
+        }
+
+        String userName = (String) attributes.get("userName");
+
+        if (userName != null) {
+            setUserName(userName);
         }
 
         Date createDate = (Date) attributes.get("createDate");
@@ -133,6 +159,82 @@ public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
                 Method method = clazz.getMethod("setPurchaseOrderId", long.class);
 
                 method.invoke(_purchaseOrderRemoteModel, purchaseOrderId);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public long getCompanyId() {
+        return _companyId;
+    }
+
+    @Override
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+
+        if (_purchaseOrderRemoteModel != null) {
+            try {
+                Class<?> clazz = _purchaseOrderRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setCompanyId", long.class);
+
+                method.invoke(_purchaseOrderRemoteModel, companyId);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public long getUserId() {
+        return _userId;
+    }
+
+    @Override
+    public void setUserId(long userId) {
+        _userId = userId;
+
+        if (_purchaseOrderRemoteModel != null) {
+            try {
+                Class<?> clazz = _purchaseOrderRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setUserId", long.class);
+
+                method.invoke(_purchaseOrderRemoteModel, userId);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public String getUserUuid() throws SystemException {
+        return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+    }
+
+    @Override
+    public void setUserUuid(String userUuid) {
+        _userUuid = userUuid;
+    }
+
+    @Override
+    public String getUserName() {
+        return _userName;
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        _userName = userName;
+
+        if (_purchaseOrderRemoteModel != null) {
+            try {
+                Class<?> clazz = _purchaseOrderRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setUserName", String.class);
+
+                method.invoke(_purchaseOrderRemoteModel, userName);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -319,6 +421,9 @@ public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
         PurchaseOrderClp clone = new PurchaseOrderClp();
 
         clone.setPurchaseOrderId(getPurchaseOrderId());
+        clone.setCompanyId(getCompanyId());
+        clone.setUserId(getUserId());
+        clone.setUserName(getUserName());
         clone.setCreateDate(getCreateDate());
         clone.setModifiedDate(getModifiedDate());
         clone.setCustomer(getCustomer());
@@ -373,10 +478,16 @@ public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(13);
+        StringBundler sb = new StringBundler(19);
 
         sb.append("{purchaseOrderId=");
         sb.append(getPurchaseOrderId());
+        sb.append(", companyId=");
+        sb.append(getCompanyId());
+        sb.append(", userId=");
+        sb.append(getUserId());
+        sb.append(", userName=");
+        sb.append(getUserName());
         sb.append(", createDate=");
         sb.append(getCreateDate());
         sb.append(", modifiedDate=");
@@ -394,7 +505,7 @@ public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(22);
+        StringBundler sb = new StringBundler(31);
 
         sb.append("<model><model-name>");
         sb.append("com.dasannetworks.vn.sb.model.PurchaseOrder");
@@ -403,6 +514,18 @@ public class PurchaseOrderClp extends BaseModelImpl<PurchaseOrder>
         sb.append(
             "<column><column-name>purchaseOrderId</column-name><column-value><![CDATA[");
         sb.append(getPurchaseOrderId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>companyId</column-name><column-value><![CDATA[");
+        sb.append(getCompanyId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>userId</column-name><column-value><![CDATA[");
+        sb.append(getUserId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>userName</column-name><column-value><![CDATA[");
+        sb.append(getUserName());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>createDate</column-name><column-value><![CDATA[");

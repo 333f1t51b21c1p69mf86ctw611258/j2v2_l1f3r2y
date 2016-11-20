@@ -632,6 +632,9 @@ public class PurchaseOrderPersistenceImpl extends BasePersistenceImpl<PurchaseOr
         purchaseOrderImpl.setPrimaryKey(purchaseOrder.getPrimaryKey());
 
         purchaseOrderImpl.setPurchaseOrderId(purchaseOrder.getPurchaseOrderId());
+        purchaseOrderImpl.setCompanyId(purchaseOrder.getCompanyId());
+        purchaseOrderImpl.setUserId(purchaseOrder.getUserId());
+        purchaseOrderImpl.setUserName(purchaseOrder.getUserName());
         purchaseOrderImpl.setCreateDate(purchaseOrder.getCreateDate());
         purchaseOrderImpl.setModifiedDate(purchaseOrder.getModifiedDate());
         purchaseOrderImpl.setCustomer(purchaseOrder.getCustomer());

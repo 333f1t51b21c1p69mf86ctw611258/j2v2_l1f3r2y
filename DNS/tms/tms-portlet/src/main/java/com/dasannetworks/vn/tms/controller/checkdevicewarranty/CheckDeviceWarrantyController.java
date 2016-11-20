@@ -34,10 +34,10 @@ import com.dasannetworks.vn.sb.service.DeviceLocalServiceUtil;
 import com.dasannetworks.vn.tms.controller.BaseController;
 import com.dasannetworks.vn.tms.pojo.DevicePOJO;
 import com.dasannetworks.vn.tms.service.DeviceSearchInput;
+import com.dasannetworks.vn.tms.service.DeviceService;
 import com.dasannetworks.vn.tms.service.ExcelService;
 import com.dasannetworks.vn.tms.service.ImportDeviceListService.DeviceListInputFile;
 import com.dasannetworks.vn.tms.service.ImportDeviceListService.DeviceListInputRow;
-import com.dasannetworks.vn.tms.util.DeviceUtil;
 import com.dasannetworks.vn.tms.util.JsonServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -56,7 +56,7 @@ public class CheckDeviceWarrantyController extends BaseController {
 	@RenderMapping
 	public String defaultHandler(Map<String, Object> map) throws SystemException {
 
-		map.put("device", this.pojoDevice);
+		// map.put("device", this.pojoDevice);
 
 		// List<Device> deviceList = DeviceLocalServiceUtil.getDevices(0,
 		// DeviceLocalServiceUtil.getDevicesCount());
@@ -92,30 +92,27 @@ public class CheckDeviceWarrantyController extends BaseController {
 	}
 
 	@ResourceMapping("getAllDevices")
-	public void getAllStudents(ResourceRequest request, ResourceResponse response) {
-		LOGGER.info("getAllDevices()");
-		PrintWriter writer = null;
-		List<Device> studentList = null;
+	public void getAllDevices(ResourceRequest request, ResourceResponse response) throws IOException {
+		List<Device> deviceList = null;
 
 		try {
-			writer = response.getWriter();
-			// Fetch students
-			LOGGER.info("Getting all device list");
-			studentList = DeviceLocalServiceUtil.getDevices(0, DeviceLocalServiceUtil.getDevicesCount());
+			deviceList = DeviceLocalServiceUtil.getDevices(0, DeviceLocalServiceUtil.getDevicesCount());
 		} catch (Exception e) {
 			LOGGER.error("Error while getting all devices", e);
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
+		List<DevicePOJO> deviceVOList = DeviceService.getDeviceVOList(deviceList);
+		map.put("aaData", deviceVOList);
 
-		List<DevicePOJO> studentVOList = DeviceUtil.getDeviceVOList(studentList);
-
-		map.put("aaData", studentVOList);
+		PrintWriter writer = null;
+		writer = response.getWriter();
 		JsonServiceUtil.writeJson(writer, map);
 	}
 
 	@ResourceMapping("checkDevices")
 	public void checkDevices(
+			@RequestParam("exactly") Boolean exactly,
 			@RequestParam("serialNumber") String serialNumber,
 			@RequestParam("macAddress") String macAddress,
 			@RequestParam("purchaseOrder") String purchaseOrder,
@@ -125,34 +122,18 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 		List<Device> deviceList = null;
 		try {
-			deviceList = searchDeviceList(serialNumber, macAddress);
+			deviceList = searchDeviceList(exactly, serialNumber, macAddress);
 		} catch (Exception e) {
-			LOGGER.error("Error while getting all devices", e);
+			LOGGER.error("Error while checking devices", e);
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<DevicePOJO> listDevicePOJO = DeviceUtil.getDeviceVOList(deviceList);
+		List<DevicePOJO> listDevicePOJO = DeviceService.getDeviceVOList(deviceList);
 		map.put("deviceList", listDevicePOJO);
 
 		PrintWriter writer = null;
 		writer = resourceResponse.getWriter();
 		JsonServiceUtil.writeJson(writer, map);
-	}
-
-	private List<Device> searchDeviceList(String serialNumber, String macAddress) throws SystemException {
-		List<Device> deviceList;
-		DeviceSearchInput deviceSearchInput = new DeviceSearchInput();
-		deviceSearchInput.setAndSearchCondition(true);
-		deviceSearchInput.setSerialNumber(serialNumber);
-		deviceSearchInput.setMacAddress(macAddress);
-
-		long count = DeviceLocalServiceUtil.searchCount(deviceSearchInput);
-
-		deviceSearchInput.setStart(0);
-		deviceSearchInput.setEnd((int) count);
-
-		deviceList = DeviceLocalServiceUtil.search(deviceSearchInput);
-		return deviceList;
 	}
 
 	@ResourceMapping("checkDevicesWithExcel")
@@ -170,11 +151,11 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 				List<DeviceListInputRow> rows = deviceListInputFile.getRows();
 
-				LOGGER.info("rows: " + rows.size());
+				LOGGER.info("Excel rows: " + rows.size());
 
 				List<Device> tmpDevices = null;
 				for (DeviceListInputRow deviceListInputRow : rows) {
-					tmpDevices = searchDeviceList(deviceListInputRow.getSerialNumber(), deviceListInputRow.getMacAddress());
+					tmpDevices = searchDeviceList(true, deviceListInputRow.getSerialNumber(), deviceListInputRow.getMacAddress());
 					if (!CollectionUtils.isEmpty(tmpDevices)) {
 						hsDevices.addAll(tmpDevices);
 					}
@@ -184,12 +165,29 @@ public class CheckDeviceWarrantyController extends BaseController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Device> tmpDevices = new ArrayList<>(hsDevices);
-		List<DevicePOJO> listDevicePOJO = DeviceUtil.getDeviceVOList(tmpDevices);
+		List<DevicePOJO> listDevicePOJO = DeviceService.getDeviceVOList(tmpDevices);
 		map.put("deviceList", listDevicePOJO);
 
 		PrintWriter writer = null;
 		writer = resourceResponse.getWriter();
 		JsonServiceUtil.writeJson(writer, map);
+	}
+
+	private List<Device> searchDeviceList(boolean exactly, String serialNumber, String macAddress) throws SystemException {
+		List<Device> deviceList;
+		DeviceSearchInput deviceSearchInput = new DeviceSearchInput();
+		deviceSearchInput.setExactly(exactly);
+		deviceSearchInput.setAndSearchCondition(true);
+		deviceSearchInput.setSerialNumber(serialNumber);
+		deviceSearchInput.setMacAddress(macAddress);
+
+		long count = DeviceLocalServiceUtil.searchCount(deviceSearchInput);
+
+		deviceSearchInput.setStart(0);
+		deviceSearchInput.setEnd((int) count);
+
+		deviceList = DeviceLocalServiceUtil.search(deviceSearchInput);
+		return deviceList;
 	}
 
 }

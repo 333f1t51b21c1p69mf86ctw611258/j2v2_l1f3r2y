@@ -8,32 +8,46 @@
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
-	
+
 	<portlet>
 		<portlet-name>springtest</portlet-name>
 	</portlet>
-	
+
 	<portlet>
 		<portlet-name>LiferaySpring</portlet-name>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
-	
+
 	<portlet>
 		<portlet-name>check-device-warranty</portlet-name>
-		
+
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
-		
-		<header-portlet-css>/css/check-device-warranty/jquery.dataTables.css</header-portlet-css>
+
+		<header-portlet-css>/css/jquery.dataTables.css</header-portlet-css>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-		
-		<header-portlet-javascript>/js/check-device-warranty/jquery-1.11.1.min.js</header-portlet-javascript>
-		<header-portlet-javascript>/js/check-device-warranty/jquery.dataTables.min.js</header-portlet-javascript>
-		<header-portlet-javascript>/js/check-device-warranty/jquery.form.js</header-portlet-javascript>				
+
+		<header-portlet-javascript>/js/jquery-1.11.1.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/jquery.dataTables.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/jquery.form.js</header-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
-	
+
+	<portlet>
+		<portlet-name>hand-over-form-mng</portlet-name>
+
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+
+		<header-portlet-css>/css/jquery.dataTables.css</header-portlet-css>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+
+		<header-portlet-javascript>/js/jquery-1.11.1.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/jquery.dataTables.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/jquery.form.js</header-portlet-javascript>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+	</portlet>
+
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
