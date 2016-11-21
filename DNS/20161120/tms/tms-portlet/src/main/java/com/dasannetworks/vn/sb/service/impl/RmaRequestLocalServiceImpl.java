@@ -1,6 +1,11 @@
 package com.dasannetworks.vn.sb.service.impl;
 
+import java.util.List;
+
+import com.dasannetworks.vn.sb.model.RmaRequest;
 import com.dasannetworks.vn.sb.service.base.RmaRequestLocalServiceBaseImpl;
+import com.dasannetworks.vn.sb.service.persistence.RmaRequestUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the rma request local service.
@@ -17,9 +22,13 @@ import com.dasannetworks.vn.sb.service.base.RmaRequestLocalServiceBaseImpl;
  * @see com.dasannetworks.vn.sb.service.RmaRequestLocalServiceUtil
  */
 public class RmaRequestLocalServiceImpl extends RmaRequestLocalServiceBaseImpl {
-    /*
-     * NOTE FOR DEVELOPERS:
-     *
-     * Never reference this interface directly. Always use {@link com.dasannetworks.vn.sb.service.RmaRequestLocalServiceUtil} to access the rma request local service.
-     */
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. Always use {@link com.dasannetworks.vn.sb.service.RmaRequestLocalServiceUtil} to access the rma request local service.
+	 */
+
+	public List<RmaRequest> findByStatus(int status) throws SystemException {
+		return RmaRequestUtil.findByStatus(status);
+	}
 }

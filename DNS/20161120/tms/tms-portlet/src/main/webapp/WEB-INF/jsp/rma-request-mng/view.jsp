@@ -1,59 +1,49 @@
+<%@page import="org.springframework.util.StringUtils"%>
 <%@include file="init.jsp"%>
 
-<portlet:resourceURL id='getAllRmaRequests' var="resourceURL_getAllRmaRequests" />
-
-<portlet:renderURL var="renderURL_newRmaRequest">
-	<portlet:param name="render" value="newRmaRequest" />
-</portlet:renderURL>
-<portlet:renderURL var="renderURL_createdRmaRequest">
-	<portlet:param name="render" value="createdRmaRequest" />
+<portlet:renderURL var="renderURL_newRmaRequest_ForCreating">
+	<portlet:param name="render" value="newRmaRequest_ForCreating" />
+	<portlet:param name="backURL" value="<%= themeDisplay.getURLCurrent() %>"></portlet:param>
 </portlet:renderURL>
 
-<p class="pull-left">
-	<a href="${renderURL_createRmaRequest }" class="btn btn-primary"> <i class="icon-plus"></i> <spring:message code="label.createRmaRequest" /></a>
-</p>
+<portlet:renderURL var="tabURL"/>
 
-<legend>RMA Requests</legend>
-<div>
-	<table id="rmaRequest-datatable" class="display" cellspacing="0">
-		<thead>
-			<tr>
-				<th><spring:message code="label.rmaRequestNumber" /></th>
-				<th><spring:message code="label.customerCode" /></th>
-				<th><spring:message code="label.contactPoint" /></th>
-				<th><spring:message code="label.email" /></th>
-				<th><spring:message code="label.phone" /></th>
-				<th><spring:message code="label.location" /></th>
-				<th><spring:message code="label.personInCharge" /></th>
-				<th><spring:message code="label.assignDate" /></th>
-				<th><spring:message code="label.estimatedReturnDate" /></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tfoot>
-			<tr>
-				<th><spring:message code="label.rmaRequestNumber" /></th>
-				<th><spring:message code="label.customerCode" /></th>
-				<th><spring:message code="label.contactPoint" /></th>
-				<th><spring:message code="label.email" /></th>
-				<th><spring:message code="label.phone" /></th>
-				<th><spring:message code="label.location" /></th>
-				<th><spring:message code="label.personInCharge" /></th>
-				<th><spring:message code="label.assignDate" /></th>
-				<th><spring:message code="label.estimatedReturnDate" /></th>
-				<th></th>
-			</tr>
-		</tfoot>
-		<tbody>
-		</tbody>
-	</table>
+<liferay-ui:success key="send_rma_request_success" message="We send RMA Request successfully!" />
+<liferay-ui:error key="send_rma_request_error" message="Sorry, an error prevented sending RMA Request!" />
+
+<liferay-ui:success key="receive_rma_request_success" message="We receive RMA Request successfully!" />
+<liferay-ui:error key="receive_rma_request_error" message="Sorry, an error prevented receiving RMA Request!" />
+
+<liferay-ui:success key="return_rma_request_success" message="We return RMA Request successfully!" />
+<liferay-ui:error key="return_rma_request_error" message="Sorry, an error prevented returning RMA Request!" />
+
+<div style="clear: both;">
+	<p class="pull-left">
+		<a href="${renderURL_newRmaRequest_ForCreating}" class="btn btn-primary"> <i class="icon-plus"></i> <spring:message code="label.createRmaRequest" /></a>
+	</p>
 </div>
 
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-	    doc_ready("<spring:message code='label.noDataAvailableInTable' />", // 
-	    "${resourceURL_getAllRmaRequests}", //
-	    "${renderURL_createdRmaRequest}");
+<div id="divTab" style="clear: both;">
+	
+	<%
+	    String tab = ParamUtil.getString(request, "selectedTab", "Created RMA Requests");
+	%>
 
-    });
-</script>
+	<liferay-ui:tabs names="Created RMA Requests,Sent RMA Requests,Received From Partners,Returned To Customers" url="<%=tabURL.toString()%>" param="selectedTab" >
+		<c:if test='<%= tab.equalsIgnoreCase("Created RMA Requests")%>' >      
+	        <liferay-util:include page="/WEB-INF/jsp/rma-request-mng/dt_created.jsp" servletContext="<%=application%>" />
+	    </c:if>
+	     
+	    <c:if test='<%= tab.equalsIgnoreCase("Sent RMA Requests")%>' >     
+	        <liferay-util:include page="/WEB-INF/jsp/rma-request-mng/dt_sent.jsp" servletContext="<%=application%>" />
+	    </c:if>
+	     
+	    <c:if test='<%= tab.equalsIgnoreCase("Received From Partners")%>' >     
+	        <liferay-util:include page="/WEB-INF/jsp/rma-request-mng/dt_received.jsp" servletContext="<%=application%>" />
+	    </c:if>
+	    
+	    <c:if test='<%= tab.equalsIgnoreCase("Returned To Customers")%>' >     
+	        <liferay-util:include page="/WEB-INF/jsp/rma-request-mng/dt_received.jsp" servletContext="<%=application%>" />
+	    </c:if>
+	</liferay-ui:tabs>
+</div>

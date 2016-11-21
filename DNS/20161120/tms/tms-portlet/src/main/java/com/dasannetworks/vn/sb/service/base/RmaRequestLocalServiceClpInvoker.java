@@ -53,6 +53,8 @@ public class RmaRequestLocalServiceClpInvoker {
     private String[] _methodParameterTypes70;
     private String _methodName71;
     private String[] _methodParameterTypes71;
+    private String _methodName76;
+    private String[] _methodParameterTypes76;
 
     public RmaRequestLocalServiceClpInvoker() {
         _methodName0 = "addRmaRequest";
@@ -160,6 +162,10 @@ public class RmaRequestLocalServiceClpInvoker {
         _methodName71 = "setBeanIdentifier";
 
         _methodParameterTypes71 = new String[] { "java.lang.String" };
+
+        _methodName76 = "findByStatus";
+
+        _methodParameterTypes76 = new String[] { "int" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -285,6 +291,11 @@ public class RmaRequestLocalServiceClpInvoker {
             RmaRequestLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
+        }
+
+        if (_methodName76.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+            return RmaRequestLocalServiceUtil.findByStatus(((Integer) arguments[0]).intValue());
         }
 
         throw new UnsupportedOperationException();

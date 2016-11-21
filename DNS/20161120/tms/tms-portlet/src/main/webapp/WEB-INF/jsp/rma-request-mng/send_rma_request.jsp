@@ -6,8 +6,11 @@
 	<portlet:param name="action" value="sendRmaRequest" />
 </portlet:actionURL>
 
+<%
+	String backURL = ParamUtil.getString(request, "backURL");
+%>
 <p>
-	<liferay-ui:header title="Send RMA Request To Partner" backURL="${backToList}" backLabel="Back"></liferay-ui:header>
+	<liferay-ui:header title="Send RMA Request To Partner" backURL="<%= backURL %>" backLabel="Back"></liferay-ui:header>
 </p>
 
 <style>
@@ -17,24 +20,11 @@ label.error {
 </style>
 
 <form:form id="rmaRequestForm" commandName="rmaRequest" method="post" action="${actionURL_sendRmaRequest}" cssClass="form-horizontal">
-	<c:if test="${not empty message }">
-		${message}
-	</c:if>
 	<div id="rootwizard">
 		<ul>
 			<li><a href="#tab1" data-toggle="tab">Sending Step Information</a></li>
 			<li><a href="#tab2" data-toggle="tab">Sending Note</a></li>
 		</ul>
-
-		<column name="partnerCode" type="String"></column>
-		<column name="partnerInCharge" type="String"></column>
-		<column name="partnerEmail" type="String"></column>
-		<column name="partnerPhone" type="String"></column>
-		<column name="partnerLocation" type="String"></column>
-		<column name="sendingEstReturnDate" type="Date"></column>
-		<column name="sendingReturnedDate" type="Date"></column>
-		<column name="sendingAssignedDate" type="Date"></column>
-		<column name="sendingNote" type="String"></column>
 
 		<div class="tab-content">
 			<!-- Tab 1 : Basic Information -->
@@ -42,7 +32,7 @@ label.error {
 				<div class="control-group">
 					<label class="control-label" for="partnerCode"><spring:message code="label.partnerCode" /><span class="required">*</span> </label>
 					<div class="controls">
-						<form:input path="partnerCode" cssClass="required alpha" />
+						<form:input path="partnerCode" cssClass="required" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -70,15 +60,23 @@ label.error {
 					<label class="control-label" for="sendingEstReturnDate"> <spring:message code="label.estimatedReturnDate" />
 					</label>
 					<div class="controls">
-						<form:input path="sendingEstReturnDate" 
-							name="sendingEstReturnDate" 
-							id="sendingEstReturnDate" 
-							value="${rmaRequest.sendingEstReturnDate}" />
+						<fmt:formatDate value="${rmaRequest.sendingEstReturnDate}"  
+			                type="date" 
+			                pattern="MM/dd/yyyy"
+			                var="valSendingEstReturnDate" />
+						<form:input path="sendingEstReturnDate" name="dtpSendingEstReturnDate" id="dtpSendingEstReturnDate" value="${valSendingEstReturnDate}" />
 					</div>
 				</div>
 			</div>
 			<!-- Tab 2 : Course Detail -->
-			<div class="tab-pane" id="tab2"></div>
+			<div class="tab-pane" id="tab2">
+				<div class="control-group">
+					<label class="control-label" for="partnerCode"><spring:message code="label.partnerCode" /></label>
+					<div class="controls">
+						<form:textarea path="sendingNote" />
+					</div>
+				</div>
+			</div>
 			<div class="well well-large">
 				<form:hidden path="rmaRequestId" />
 				<a href="javascript:void(0);" class="btn button-previous"><i class="icon-arrow-left"></i> <spring:message code="label.previous" /></a> <a href="javascript:void(0);" class="btn button-next"><spring:message code="label.next" /> <i class="icon-arrow-right"></i></a>
@@ -94,7 +92,5 @@ label.error {
 <script type="text/javascript">
 	$(document).ready(function() {
 	    send_rma_request_doc_ready();
-
-	    var creatingEstReturnDate = new Pikaday({field: jQuery('#sendingEstReturnDate')[0], format: 'MM/DD/YYYY'});
     });
 </script>

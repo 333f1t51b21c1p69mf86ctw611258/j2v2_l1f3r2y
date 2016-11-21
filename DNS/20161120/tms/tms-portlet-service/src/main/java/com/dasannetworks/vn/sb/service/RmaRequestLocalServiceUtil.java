@@ -323,6 +323,11 @@ public class RmaRequestLocalServiceUtil {
         return getService().invokeMethod(name, parameterTypes, arguments);
     }
 
+    public static java.util.List<com.dasannetworks.vn.sb.model.RmaRequest> findByStatus(
+        int status) throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().findByStatus(status);
+    }
+
     public static void clearService() {
         _service = null;
     }

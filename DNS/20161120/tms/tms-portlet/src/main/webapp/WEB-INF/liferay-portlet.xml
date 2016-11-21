@@ -113,7 +113,6 @@
 
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/rma-request-mng/main.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/js/rma-request-mng/send_rma_request.js</footer-portlet-javascript>
 		
 		<css-class-wrapper>rma-request-mng-portlet</css-class-wrapper>
 	</portlet>

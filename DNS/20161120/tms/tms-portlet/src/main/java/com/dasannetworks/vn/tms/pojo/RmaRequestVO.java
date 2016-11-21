@@ -91,4 +91,11 @@ public class RmaRequestVO implements Serializable {
 		return rmaRequestVO;
 	}
 
+	@Override
+	public String toString() {
+		return "RmaRequestVO [partnerCode=" + partnerCode + ", partnerInCharge=" + partnerInCharge + ", partnerEmail=" + partnerEmail + ", partnerPhone=" + partnerPhone + ", partnerLocation=" + partnerLocation + ", sendingEstReturnDate=" + sendingEstReturnDate + ", sendingReturnedDate=" + sendingReturnedDate + ", sendingAssignedDate=" + sendingAssignedDate + ", sendingNote=" + sendingNote + "]";
+	}
+	
+	
+
 }

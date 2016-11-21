@@ -166,6 +166,10 @@
 
 		<!-- Finder methods -->
 
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>
+
 		<finder name="RmaRequestNumber" return-type="RmaRequest"
 			unique="true">
 			<finder-column name="rmaRequestNumber" />

@@ -24,6 +24,7 @@ create index IX_7AC9B2A on tms_RmaRequest (cusCode);
 create index IX_A2D60056 on tms_RmaRequest (groupId);
 create index IX_C411893C on tms_RmaRequest (groupId, status);
 create unique index IX_A963951A on tms_RmaRequest (rmaRequestNumber);
+create index IX_E3178DBA on tms_RmaRequest (status);
 create index IX_6AFBB060 on tms_RmaRequest (uuid_);
 create index IX_5BEE57C8 on tms_RmaRequest (uuid_, companyId);
 create unique index IX_7B3A304A on tms_RmaRequest (uuid_, groupId);

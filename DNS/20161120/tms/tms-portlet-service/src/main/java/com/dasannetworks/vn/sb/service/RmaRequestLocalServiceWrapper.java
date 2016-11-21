@@ -343,6 +343,12 @@ public class RmaRequestLocalServiceWrapper implements RmaRequestLocalService,
             arguments);
     }
 
+    @Override
+    public java.util.List<com.dasannetworks.vn.sb.model.RmaRequest> findByStatus(
+        int status) throws com.liferay.portal.kernel.exception.SystemException {
+        return _rmaRequestLocalService.findByStatus(status);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */
