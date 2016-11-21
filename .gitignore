@@ -1,3 +1,6 @@
+# Mergetools
+*.orig
+
 # Maven
 target/
 pom.xml.versionsBackup

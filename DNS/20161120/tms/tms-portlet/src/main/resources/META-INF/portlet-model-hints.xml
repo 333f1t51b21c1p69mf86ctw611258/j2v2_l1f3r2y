@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.dasannetworks.vn.sb.model.Contact">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="firstname" type="String" />
+		<field name="lastname" type="String" />
+		<field name="telephone" type="String" />
+		<field name="email" type="String" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.Device">
+		<field name="deviceId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modelName" type="String" />
+		<field name="serialNumber" type="String" />
+		<field name="hardwareRevision" type="String" />
+		<field name="softwareRevision" type="String" />
+		<field name="manufacturerSerial" type="String" />
+		<field name="macAddress" type="String" />
+		<field name="partNumber" type="String" />
+		<field name="specification" type="String" />
+		<field name="factoryOut" type="Date" />
+		<field name="purchaseOrderId" type="Long" />
+		<field name="warrantyFormId" type="Long" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.PurchaseOrder">
+		<field name="purchaseOrderId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="customerCode" type="String" />
+		<field name="signDate" type="Date" />
+		<field name="warrantyStartDate" type="Date" />
+		<field name="warrantyEndDate" type="Date" />
+		<field name="purchaseOrderNumber" type="String" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.RmaRequest">
+		<field name="uuid" type="String" />
+		<field name="rmaRequestId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="groupId" type="long" />
+		<field name="rmaRequestNumber" type="String" />
+		<field name="cusCode" type="String" />
+		<field name="cusInCharge" type="String" />
+		<field name="cusEmail" type="String" />
+		<field name="cusPhone" type="String" />
+		<field name="cusLocation" type="String" />
+		<field name="provInCharge" type="String" />
+		<field name="creatingEstReturnDate" type="Date" />
+		<field name="creatingReturnedDate" type="Date" />
+		<field name="creatingAssignedDate" type="Date" />
+		<field name="creatingNote" type="String" />
+		<field name="partnerCode" type="String" />
+		<field name="partnerInCharge" type="String" />
+		<field name="partnerEmail" type="String" />
+		<field name="partnerPhone" type="String" />
+		<field name="partnerLocation" type="String" />
+		<field name="sendingEstReturnDate" type="Date" />
+		<field name="sendingReturnedDate" type="Date" />
+		<field name="sendingAssignedDate" type="Date" />
+		<field name="sendingNote" type="String" />
+		<field name="receivingReturnedDate" type="Date" />
+		<field name="receivingNote" type="String" />
+		<field name="returningReturnedDate" type="Date" />
+		<field name="returningNote" type="String" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusDate" type="Date" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.RmaRequestDevice">
+		<field name="rmaRequestId" type="long" />
+		<field name="deviceId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="faultNote" type="String" />
+		<field name="status" type="String" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.WarrantyForm">
+		<field name="warrantyFormId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="customerCode" type="String" />
+		<field name="warrantyStartDate" type="Date" />
+		<field name="warrantyEndDate" type="Date" />
+		<field name="originalDeviceId" type="long" />
+		<field name="currentDeviceId" type="long" />
+		<field name="remark" type="String" />
+	</model>
+</model-hints>
