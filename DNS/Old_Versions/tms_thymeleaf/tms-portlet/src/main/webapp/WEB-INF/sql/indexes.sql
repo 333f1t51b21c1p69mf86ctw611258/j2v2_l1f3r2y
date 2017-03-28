@@ -1,1 +1,0 @@
-create index IX_77CA998D on tms_Device (uploadFileId);
