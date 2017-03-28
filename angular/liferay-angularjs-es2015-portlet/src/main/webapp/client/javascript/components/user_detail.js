@@ -30,9 +30,9 @@ const component = {
     controllerAs: 'ctrl',
     controller: UserDetailController,
     template: `
-         <h3>Portal User: {{ctrl.selectedUser.screenName}}</h3>
+        <h3>Portal User: {{ctrl.selectedUser.screenName}}</h3>
         <div>
-            <table class="ng1-portlet-user-table">
+            <table class="ng1-portlet-user-table" style="width: 100%;">
                 <tr>
                     <td>Screen Name:</td>
                     <td>{{ctrl.selectedUser.screenName}}</td>

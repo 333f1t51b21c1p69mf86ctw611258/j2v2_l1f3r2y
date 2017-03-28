@@ -64,7 +64,7 @@ const component = {
     template: `
         <h3>Portal User List</h3>
         <div>
-            <table class="ng1-portlet-user-table">
+            <table class="ng1-portlet-user-table" style="width: 100%;">
                 <tr>
                     <th>Screen Name</th>
                     <th>First Name</th>
@@ -82,7 +82,7 @@ const component = {
             </table>
         </div>
         <div class="ng1-portlet-controls">
-            Page {{currentPage + 1}} of {{totalPages()}}
+            Page {{ctrl.currentPage + 1}} of {{ctrl.totalPages()}}
             &nbsp;
             <a href="#" ng-click="ctrl.previousPage()" ng-class="{ 'disabled': ctrl.isFirstPage() }">Previous Page</a>
             |

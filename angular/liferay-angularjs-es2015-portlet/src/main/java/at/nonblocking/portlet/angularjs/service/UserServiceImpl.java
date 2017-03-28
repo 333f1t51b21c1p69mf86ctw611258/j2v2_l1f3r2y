@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 
 	public UserServiceImpl() {
 		this(UserLocalServiceUtil.getService());
-	}
-
+	}	
+	
 	@Override
 	public UserList getPortalUserList(int startIndex, int limit) throws SystemException {
 		int usersTotal = this.liferayUserService.getUsersCount();
@@ -79,4 +79,5 @@ public class UserServiceImpl implements UserService {
 		}
 		return StringUtils.join(roleNames, ",");
 	}
+	
 }

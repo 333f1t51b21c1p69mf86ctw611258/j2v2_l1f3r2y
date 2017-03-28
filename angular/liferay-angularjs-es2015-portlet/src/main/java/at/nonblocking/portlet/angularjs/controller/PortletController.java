@@ -46,7 +46,7 @@ public class PortletController {
 
 		return "index";
 	}
-
+	
 	@ResourceMapping("userList")
 	public void userList(@RequestParam int startIndex, @RequestParam int limit, ResourceResponse response) throws Exception {
 		LOG.debug("Got list request for users with startIndex {} and limit {}", startIndex, limit);
