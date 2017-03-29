@@ -46,7 +46,7 @@ public class PortletController {
 
 		return "index";
 	}
-	
+
 	@ResourceMapping("userList")
 	public void userList(@RequestParam int startIndex, @RequestParam int limit, ResourceResponse response) throws Exception {
 		LOG.debug("Got list request for users with startIndex {} and limit {}", startIndex, limit);
@@ -60,7 +60,7 @@ public class PortletController {
 		// See: https://jira.spring.io/browse/SPR-7344
 		JSON_MAPPER.writeValue(response.getPortletOutputStream(), users);
 	}
-
+	
 	@ResourceMapping("userDetail")
 	public void userDetail(@RequestParam long userId, ResourceResponse response) throws Exception {
 		LOG.debug("Got detail request for user with id {}", userId);
