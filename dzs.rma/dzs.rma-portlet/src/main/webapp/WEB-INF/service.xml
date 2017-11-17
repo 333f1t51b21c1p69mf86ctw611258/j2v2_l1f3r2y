@@ -1,48 +1,49 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
-<service-builder package-path="com.dasannetworks.vn">
-	<namespace>dzs.rma</namespace>
-	<entity name="Foo" uuid="true" local-service="true" remote-service="true">
-
+<service-builder package-path="com.dasannetworks.vn.sb">
+	<namespace>tms</namespace>
+	<entity name="Device" local-service="true" cache-enabled="false"
+		remote-service="true">
 		<!-- PK fields -->
 
-		<column name="fooId" type="long" primary="true" />
+		<column name="deviceId" type="long" primary="true"></column>
 
 		<!-- Group instance -->
 
-		<column name="groupId" type="long" />
+		<column name="groupId" type="long"></column>
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
 
 		<!-- Other fields -->
 
-		<column name="field1" type="String" />
-		<column name="field2" type="boolean" />
-		<column name="field3" type="int" />
-		<column name="field4" type="Date" />
-		<column name="field5" type="String" />
+		<column name="modelName" type="String"></column>
 
-		<!-- Order -->
+		<column name="serialNumber" type="String" convert-null="false"></column>
+		<column name="gponSerialNumber" type="String" convert-null="false"></column>
+		<column name="boxSerialNumber" type="String" convert-null="false"></column>
+		<column name="customerSerialNumber" type="String" convert-null="false"></column>
+		<column name="manufacturerSerialNumber" type="String" convert-null="false"></column>
 
-		<order by="asc">
-			<order-column name="field1" />
-		</order>
+		<column name="hardwareRevision" type="String"></column>
+		<column name="softwareRevision" type="String"></column>
+		<column name="macAddress" type="String"></column>
+		<column name="partNumber" type="String"></column>
+		<column name="specification" type="String"></column>
+		<column name="factoryOut" type="Date"></column>
+
+		<column name="purchaseOrderId" type="Long" convert-null="false"></column>
+		<column name="warrantyFormId" type="Long" convert-null="false"></column>
+
+		<column name="status" type="int"></column>
 
 		<!-- Finder methods -->
+		
 
-		<finder name="Field2" return-type="Collection">
-			<finder-column name="field2" />
-		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
-		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
 	</entity>
 </service-builder>
