@@ -116,7 +116,9 @@ public class DeviceFinderImpl extends BasePersistenceImpl<Device> implements Dev
 
 		String query = getListBySerialNumberAndPO_GetQueryString(false, serialNumbers, gponSerialNumbers,
 				customerSerialNumbers, purchaseOrderId);
-		query = String.format(" %s %s %s %s ", query, "ORDER BY", orderColumn, orderDirection);
+		if (StringUtils.isNotEmpty(orderColumn) && StringUtils.isNotEmpty(orderDirection)) {
+			query = String.format(" %s %s %s %s ", query, "ORDER BY", orderColumn, orderDirection);
+		}
 
 		LOGGER.info("### QUERYSTRING DeviceFinder.getListBySerialNumberAndPO: " + query);
 
