@@ -2,6 +2,7 @@
 
 <service-builder package-path="com.dasannetworks.vn.sb">
 	<namespace>tms</namespace>
+
 	<entity name="Device" local-service="true" cache-enabled="false"
 		remote-service="true">
 		<!-- PK fields -->
@@ -28,7 +29,8 @@
 		<column name="gponSerialNumber" type="String" convert-null="false"></column>
 		<column name="boxSerialNumber" type="String" convert-null="false"></column>
 		<column name="customerSerialNumber" type="String" convert-null="false"></column>
-		<column name="manufacturerSerialNumber" type="String" convert-null="false"></column>
+		<column name="manufacturerSerialNumber" type="String"
+			convert-null="false"></column>
 
 		<column name="hardwareRevision" type="String"></column>
 		<column name="softwareRevision" type="String"></column>
@@ -43,7 +45,578 @@
 		<column name="status" type="int"></column>
 
 		<!-- Finder methods -->
-		
+
+		<finder name="PurchaseOrderId" return-type="Collection">
+			<finder-column name="purchaseOrderId" />
+		</finder>
+
+		<finder name="ModelName" return-type="Collection">
+			<finder-column name="modelName" />
+		</finder>
+
+		<finder name="WarrantyFormId" return-type="Device" unique="true">
+			<finder-column name="warrantyFormId" />
+		</finder>
+
+		<finder name="SerialNumber" return-type="Device" unique="true">
+			<finder-column name="serialNumber" />
+		</finder>
+
+		<finder name="GponSerialNumber" return-type="Device" unique="true">
+			<finder-column name="gponSerialNumber" />
+		</finder>
+
+		<finder name="CustomerSerialNumber" return-type="Device"
+			unique="true">
+			<finder-column name="customerSerialNumber" />
+		</finder>
+
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>
 
 	</entity>
+
+	<entity name="DeviceHis" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="deviceId" type="long" primary="true"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- Other fields -->
+
+		<column name="modelName" type="String"></column>
+
+		<column name="serialNumber" type="String" convert-null="false"></column>
+		<column name="gponSerialNumber" type="String" convert-null="false"></column>
+		<column name="boxSerialNumber" type="String" convert-null="false"></column>
+		<column name="customerSerialNumber" type="String" convert-null="false"></column>
+		<column name="manufacturerSerialNumber" type="String"
+			convert-null="false"></column>
+
+		<column name="hardwareRevision" type="String"></column>
+		<column name="softwareRevision" type="String"></column>
+		<column name="macAddress" type="String"></column>
+		<column name="partNumber" type="String"></column>
+		<column name="specification" type="String"></column>
+		<column name="factoryOut" type="Date"></column>
+
+		<column name="purchaseOrderId" type="Long" convert-null="false"></column>
+		<column name="warrantyFormId" type="Long" convert-null="false"></column>
+
+		<column name="status" type="int"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="PurchaseOrderId" return-type="Collection">
+			<finder-column name="purchaseOrderId" />
+		</finder>
+
+		<finder name="ModelName" return-type="Collection">
+			<finder-column name="modelName" />
+		</finder>
+
+		<finder name="WarrantyFormId" return-type="Collection">
+			<finder-column name="warrantyFormId" />
+		</finder>
+
+		<finder name="SerialNumber" return-type="Device" unique="true">
+			<finder-column name="serialNumber" />
+		</finder>
+
+		<finder name="GponSerialNumber" return-type="Device" unique="true">
+			<finder-column name="gponSerialNumber" />
+		</finder>
+
+		<finder name="CustomerSerialNumber" return-type="Device"
+			unique="true">
+			<finder-column name="customerSerialNumber" />
+		</finder>
+
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>
+
+	</entity>
+
+	<entity name="DeviceExt" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="deviceExtId" type="long" primary="true"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- Other fields -->
+
+		<column name="modelName" type="String"></column>
+
+		<column convert-null="false" name="serialNumber" type="String"></column>
+		<column convert-null="false" name="gponSerialNumber" type="String"></column>
+		<column convert-null="false" name="boxSerialNumber" type="String"></column>
+		<column convert-null="false" name="customerSerialNumber" type="String"></column>
+		<column convert-null="false" name="manufacturerSerialNumber"
+			type="String"></column>
+
+		<column name="hardwareRevision" type="String"></column>
+		<column name="softwareRevision" type="String"></column>
+		<column name="macAddress" type="String"></column>
+		<column name="partNumber" type="String"></column>
+		<column name="specification" type="String"></column>
+		<column name="factoryOut" type="Date"></column>
+
+		<column name="status" type="int"></column>
+
+		<column name="ostStatusChangedDate" type="Date"></column>
+
+		<column name="deviceExtOrderId" type="Long" convert-null="false"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="DeviceExtOrderId" return-type="Collection">
+			<finder-column name="deviceExtOrderId" />
+		</finder>
+
+		<finder name="ModelName" return-type="Collection">
+			<finder-column name="modelName" />
+		</finder>
+
+		<finder name="SerialNumber" return-type="Device" unique="true">
+			<finder-column name="serialNumber" />
+		</finder>
+
+		<finder name="GponSerialNumber" return-type="Device" unique="true">
+			<finder-column name="gponSerialNumber" />
+		</finder>
+
+		<finder name="CustomerSerialNumber" return-type="Device"
+			unique="true">
+			<finder-column name="customerSerialNumber" />
+		</finder>
+
+	</entity>
+
+	<entity name="DeviceExtHis" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="deviceExtId" type="long" primary="true"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- Other fields -->
+
+		<column name="modelName" type="String"></column>
+
+		<column name="serialNumber" type="String" convert-null="false"></column>
+		<column name="gponSerialNumber" type="String" convert-null="false"></column>
+		<column name="boxSerialNumber" type="String" convert-null="false"></column>
+		<column name="customerSerialNumber" type="String" convert-null="false"></column>
+		<column name="manufacturerSerialNumber" type="String"
+			convert-null="false"></column>
+
+		<column name="hardwareRevision" type="String"></column>
+		<column name="softwareRevision" type="String"></column>
+		<column name="macAddress" type="String"></column>
+		<column name="partNumber" type="String"></column>
+		<column name="specification" type="String"></column>
+		<column name="factoryOut" type="Date"></column>
+
+		<column name="status" type="int"></column>
+
+		<column name="ostStatusChangedDate" type="Date"></column>
+
+		<column name="deviceExtOrderId" type="Long" convert-null="false"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="DeviceExtOrderId" return-type="Collection">
+			<finder-column name="deviceExtOrderId" />
+		</finder>
+
+		<finder name="ModelName" return-type="Collection">
+			<finder-column name="modelName" />
+		</finder>
+
+		<finder name="SerialNumber" return-type="Device" unique="true">
+			<finder-column name="serialNumber" />
+		</finder>
+
+		<finder name="GponSerialNumber" return-type="Device" unique="true">
+			<finder-column name="gponSerialNumber" />
+		</finder>
+
+		<finder name="CustomerSerialNumber" return-type="Device"
+			unique="true">
+			<finder-column name="customerSerialNumber" />
+		</finder>
+
+	</entity>
+
+	<entity name="WarrantyForm" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="warrantyFormId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- <column name="customerId" type="Long" convert-null="false"></column> -->
+		<!-- <column name="customerCode" type="String"></column> -->
+		<column name="agentCode" type="String"></column>
+
+		<column name="warrantyStartDate" type="Date"></column>
+		<column name="warrantyEndDate" type="Date"></column>
+
+		<column name="originalSerialNumber" type="String" convert-null="false" />
+		<column name="hisSerialNumbers" type="String" convert-null="false" />
+		<column name="latestSerialNumber" type="String" convert-null="false" />
+
+		<column name="remark" type="String"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="OriginalSerialNumber" return-type="WarrantyForm"
+			unique="true">
+			<finder-column name="originalSerialNumber" />
+		</finder>
+
+		<finder name="LatestSerialNumber" return-type="WarrantyForm"
+			unique="true">
+			<finder-column name="latestSerialNumber" />
+		</finder>
+	</entity>
+
+	<entity name="PurchaseOrder" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="purchaseOrderId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<column name="customerId" type="Long" convert-null="false"></column>
+		<!-- <column name="customerCode" type="String"></column> -->
+		<column name="signDate" type="Date"></column>
+		<column name="warrantyStartDate" type="Date"></column>
+		<column name="warrantyEndDate" type="Date"></column>
+		<column name="purchaseOrderNumber" type="String"></column>
+
+		<finder name="PurchaseOrderNumber" return-type="PurchaseOrder"
+			unique="true">
+			<finder-column name="purchaseOrderNumber" />
+		</finder>
+
+		<finder name="CustomerId" return-type="Collection">
+			<finder-column name="customerId" />
+		</finder>
+	</entity>
+
+	<entity name="DeviceExtOrder" local-service="true"
+		cache-enabled="false" remote-service="false">
+		<!-- PK fields -->
+
+		<column name="deviceExtOrderId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<column name="deviceExtOrderNumber" type="String"></column>
+		<column name="note" type="String"></column>
+
+		<finder name="DeviceExtOrderNumber" return-type="DeviceExtOrder"
+			unique="true">
+			<finder-column name="deviceExtOrderNumber" />
+		</finder>
+	</entity>
+
+	<entity name="RmaRequest" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="rmaRequestId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<column name="groupId" type="long" />
+
+		<column name="rmaRequestNumber" type="String"></column>
+
+		<!-- Creating step -->
+		<column name="customerId" type="Long" convert-null="false"></column>
+		<column name="cusInCharge" type="String"></column>
+		<column name="cusEmail" type="String"></column>
+		<column name="cusPhone" type="String"></column>
+		<column name="cusAddress" type="String"></column>
+
+		<column name="creatingEstReturnDate" type="Date"></column>
+		<column name="creatingAssignedDate" type="Date"></column>
+		<column name="creatingNote" type="String"></column>
+		<column name="creatingImportedFileName" type="String"></column>
+
+		<column name="status" type="int"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>
+
+		<finder name="RmaRequestNumber" return-type="RmaRequest"
+			unique="true">
+			<finder-column name="rmaRequestNumber" />
+		</finder>
+
+		<finder name="CustomerId" return-type="Collection">
+			<finder-column name="customerId" />
+		</finder>
+	</entity>
+
+	<entity name="RmaRequestDevice" local-service="true"
+		cache-enabled="false" remote-service="false">
+		<!-- PK fields -->
+
+		<column name="rmaRequestId" type="long" primary="true"></column>
+		<column name="deviceId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- For remapping deviceId when the system faces REMOVED_DEVICE_ERROR. -->
+		<column name="originalSerialNumber" type="String" convert-null="false"></column>
+
+		<!-- Rechange to Faulty status -->
+		<column name="faultyDate" type="Date"></column>
+		<column name="faultyNote" type="String"></column>
+		<column name="action" type="String"></column>
+
+		<!-- Sending To Partner step -->
+		<column name="partnerId" type="Long" convert-null="false"></column>
+		<column name="partnerInCharge" type="String"></column>
+		<column name="partnerEmail" type="String"></column>
+		<column name="partnerPhone" type="String"></column>
+		<column name="partnerAddress" type="String"></column>
+
+		<column name="sendingEstReturnDate" type="Date"></column>
+		<column name="sendingReturnedDate" type="Date"></column>
+		<column name="sendingAssignedDate" type="Date"></column>
+		<column name="sendingNote" type="String"></column>
+
+		<!-- Receiving From Partner step -->
+		<column name="receivingReturnedDate" type="Date"></column>
+		<column name="receivingNote" type="String"></column>
+
+		<!-- Returning To Customer step -->
+		<column name="returningReturnedDate" type="Date"></column>
+		<column name="returningNote" type="String"></column>
+
+		<column name="duplicatedRmaRequestId" type="Long" convert-null="false"></column>
+
+		<column name="deniedDate" type="Date"></column>
+		<column name="deniedNote" type="String"></column>
+
+		<column name="replacedDate" type="Date"></column>
+		<column name="replacedNote" type="String"></column>
+		<column name="replacedNumber" type="String" convert-null="false"></column>
+		<column name="replacedOldDeviceId" type="Long" convert-null="false"></column>
+		<column name="replacedOldDeviceExtId" type="Long" convert-null="false"></column>
+		<column name="replacedNewDeviceId" type="Long" convert-null="false"></column>
+		<column name="replacedNewDeviceExtId" type="Long" convert-null="false"></column>
+
+		<column name="oldStatus" type="int" convert-null="false"></column>
+		<column name="status" type="int"></column>
+		<column name="statusByUserId" type="long"></column>
+		<column name="statusDate" type="Date"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="RmaRequestId" return-type="Collection">
+			<finder-column name="rmaRequestId" />
+		</finder>
+
+		<finder name="DeviceId" return-type="Collection">
+			<finder-column name="deviceId" />
+		</finder>
+
+		<finder name="PartnerId" return-type="Collection">
+			<finder-column name="partnerId" />
+		</finder>
+
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>
+
+		<finder name="ReplacedNumber" return-type="Collection">
+			<finder-column name="replacedNumber" />
+		</finder>
+		<finder name="ReplacedOldDeviceId" return-type="RmaRequestDevice"
+			unique="true">
+			<finder-column name="replacedOldDeviceId" />
+		</finder>
+		<finder name="ReplacedOldDeviceExtId" return-type="RmaRequestDevice"
+			unique="true">
+			<finder-column name="replacedOldDeviceExtId" />
+		</finder>
+		<finder name="ReplacedNewDeviceId" return-type="RmaRequestDevice"
+			unique="true">
+			<finder-column name="replacedNewDeviceId" />
+		</finder>
+		<finder name="ReplacedNewDeviceExtId" return-type="RmaRequestDevice"
+			unique="true">
+			<finder-column name="replacedNewDeviceExtId" />
+		</finder>
+	</entity>
+
+	<entity name="RmaReplacement" local-service="true"
+		cache-enabled="false" remote-service="false">
+		<!-- PK fields -->
+
+		<column name="rmaRequestId" type="long" primary="true"></column>
+		<column name="replacedNumber" type="String" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- Business fields -->
+		<column name="status" type="int"></column>
+
+		<!-- Finder methods -->
+
+		<finder name="RmaRequestId" return-type="Collection">
+			<finder-column name="rmaRequestId" />
+		</finder>
+
+		<finder name="ReplacedNumber" return-type="RmaReplacement"
+			unique="true">
+			<finder-column name="replacedNumber" />
+		</finder>
+
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>
+	</entity>
+
+	<entity name="Customer" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="customerId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<column name="customerCode" type="String"></column>
+		<column name="customerName" type="String"></column>
+		<column name="inCharge" type="String"></column>
+		<column name="email" type="String"></column>
+		<column name="phone" type="String"></column>
+		<column name="address" type="String"></column>
+
+		<column name="parentId" type="Long" convert-null="false"></column>
+
+		<finder name="CustomerCode" return-type="Customer" unique="true">
+			<finder-column name="customerCode" />
+		</finder>
+
+		<finder name="ParentId" return-type="Collection">
+			<finder-column name="parentId" />
+		</finder>
+	</entity>
+
+	<entity name="Partner" local-service="true" cache-enabled="false"
+		remote-service="false">
+		<!-- PK fields -->
+
+		<column name="partnerId" type="long" primary="true"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<column name="partnerCode" type="String"></column>
+		<column name="partnerName" type="String"></column>
+		<column name="inCharge" type="String"></column>
+		<column name="email" type="String"></column>
+		<column name="phone" type="String"></column>
+		<column name="address" type="String"></column>
+
+		<finder name="PartnerCode" return-type="Partner" unique="true">
+			<finder-column name="partnerCode" />
+		</finder>
+	</entity>
+
 </service-builder>

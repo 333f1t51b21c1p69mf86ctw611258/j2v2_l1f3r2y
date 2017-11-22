@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.dasannetworks.vn.sb.model.Customer">
+		<field name="customerId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="customerCode" type="String" />
+		<field name="customerName" type="String" />
+		<field name="inCharge" type="String" />
+		<field name="email" type="String" />
+		<field name="phone" type="String" />
+		<field name="address" type="String" />
+		<field name="parentId" type="Long" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.Device">
+		<field name="deviceId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modelName" type="String" />
+		<field name="serialNumber" type="String" />
+		<field name="gponSerialNumber" type="String" />
+		<field name="boxSerialNumber" type="String" />
+		<field name="customerSerialNumber" type="String" />
+		<field name="manufacturerSerialNumber" type="String" />
+		<field name="hardwareRevision" type="String" />
+		<field name="softwareRevision" type="String" />
+		<field name="macAddress" type="String" />
+		<field name="partNumber" type="String" />
+		<field name="specification" type="String" />
+		<field name="factoryOut" type="Date" />
+		<field name="purchaseOrderId" type="Long" />
+		<field name="warrantyFormId" type="Long" />
+		<field name="status" type="int" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.DeviceExt">
+		<field name="deviceExtId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modelName" type="String" />
+		<field name="serialNumber" type="String" />
+		<field name="gponSerialNumber" type="String" />
+		<field name="boxSerialNumber" type="String" />
+		<field name="customerSerialNumber" type="String" />
+		<field name="manufacturerSerialNumber" type="String" />
+		<field name="hardwareRevision" type="String" />
+		<field name="softwareRevision" type="String" />
+		<field name="macAddress" type="String" />
+		<field name="partNumber" type="String" />
+		<field name="specification" type="String" />
+		<field name="factoryOut" type="Date" />
+		<field name="status" type="int" />
+		<field name="ostStatusChangedDate" type="Date" />
+		<field name="deviceExtOrderId" type="Long" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.DeviceExtHis">
+		<field name="deviceExtId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modelName" type="String" />
+		<field name="serialNumber" type="String" />
+		<field name="gponSerialNumber" type="String" />
+		<field name="boxSerialNumber" type="String" />
+		<field name="customerSerialNumber" type="String" />
+		<field name="manufacturerSerialNumber" type="String" />
+		<field name="hardwareRevision" type="String" />
+		<field name="softwareRevision" type="String" />
+		<field name="macAddress" type="String" />
+		<field name="partNumber" type="String" />
+		<field name="specification" type="String" />
+		<field name="factoryOut" type="Date" />
+		<field name="status" type="int" />
+		<field name="ostStatusChangedDate" type="Date" />
+		<field name="deviceExtOrderId" type="Long" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.DeviceExtOrder">
+		<field name="deviceExtOrderId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="deviceExtOrderNumber" type="String" />
+		<field name="note" type="String" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.DeviceHis">
+		<field name="deviceId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modelName" type="String" />
+		<field name="serialNumber" type="String" />
+		<field name="gponSerialNumber" type="String" />
+		<field name="boxSerialNumber" type="String" />
+		<field name="customerSerialNumber" type="String" />
+		<field name="manufacturerSerialNumber" type="String" />
+		<field name="hardwareRevision" type="String" />
+		<field name="softwareRevision" type="String" />
+		<field name="macAddress" type="String" />
+		<field name="partNumber" type="String" />
+		<field name="specification" type="String" />
+		<field name="factoryOut" type="Date" />
+		<field name="purchaseOrderId" type="Long" />
+		<field name="warrantyFormId" type="Long" />
+		<field name="status" type="int" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.Partner">
+		<field name="partnerId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="partnerCode" type="String" />
+		<field name="partnerName" type="String" />
+		<field name="inCharge" type="String" />
+		<field name="email" type="String" />
+		<field name="phone" type="String" />
+		<field name="address" type="String" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.PurchaseOrder">
+		<field name="purchaseOrderId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="customerId" type="Long" />
+		<field name="signDate" type="Date" />
+		<field name="warrantyStartDate" type="Date" />
+		<field name="warrantyEndDate" type="Date" />
+		<field name="purchaseOrderNumber" type="String" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.RmaReplacement">
+		<field name="rmaRequestId" type="long" />
+		<field name="replacedNumber" type="String" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="status" type="int" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.RmaRequest">
+		<field name="rmaRequestId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="groupId" type="long" />
+		<field name="rmaRequestNumber" type="String" />
+		<field name="customerId" type="Long" />
+		<field name="cusInCharge" type="String" />
+		<field name="cusEmail" type="String" />
+		<field name="cusPhone" type="String" />
+		<field name="cusAddress" type="String" />
+		<field name="creatingEstReturnDate" type="Date" />
+		<field name="creatingAssignedDate" type="Date" />
+		<field name="creatingNote" type="String" />
+		<field name="creatingImportedFileName" type="String" />
+		<field name="status" type="int" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.RmaRequestDevice">
+		<field name="rmaRequestId" type="long" />
+		<field name="deviceId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="originalSerialNumber" type="String" />
+		<field name="faultyDate" type="Date" />
+		<field name="faultyNote" type="String" />
+		<field name="action" type="String" />
+		<field name="partnerId" type="Long" />
+		<field name="partnerInCharge" type="String" />
+		<field name="partnerEmail" type="String" />
+		<field name="partnerPhone" type="String" />
+		<field name="partnerAddress" type="String" />
+		<field name="sendingEstReturnDate" type="Date" />
+		<field name="sendingReturnedDate" type="Date" />
+		<field name="sendingAssignedDate" type="Date" />
+		<field name="sendingNote" type="String" />
+		<field name="receivingReturnedDate" type="Date" />
+		<field name="receivingNote" type="String" />
+		<field name="returningReturnedDate" type="Date" />
+		<field name="returningNote" type="String" />
+		<field name="duplicatedRmaRequestId" type="Long" />
+		<field name="deniedDate" type="Date" />
+		<field name="deniedNote" type="String" />
+		<field name="replacedDate" type="Date" />
+		<field name="replacedNote" type="String" />
+		<field name="replacedNumber" type="String" />
+		<field name="replacedOldDeviceId" type="Long" />
+		<field name="replacedOldDeviceExtId" type="Long" />
+		<field name="replacedNewDeviceId" type="Long" />
+		<field name="replacedNewDeviceExtId" type="Long" />
+		<field name="oldStatus" type="int" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusDate" type="Date" />
+	</model>
+	<model name="com.dasannetworks.vn.sb.model.WarrantyForm">
+		<field name="warrantyFormId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="agentCode" type="String" />
+		<field name="warrantyStartDate" type="Date" />
+		<field name="warrantyEndDate" type="Date" />
+		<field name="originalSerialNumber" type="String" />
+		<field name="hisSerialNumbers" type="String" />
+		<field name="latestSerialNumber" type="String" />
+		<field name="remark" type="String" />
+	</model>
+</model-hints>

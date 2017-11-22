@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.CustomerModelImpl">
+		<attributes>
+			<id name="customerId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="customerCode" />
+			<basic name="customerName" />
+			<basic name="inCharge" />
+			<basic name="email" />
+			<basic name="phone" />
+			<basic name="address" />
+			<basic name="parentId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.DeviceModelImpl">
+		<attributes>
+			<id name="deviceId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modelName" />
+			<basic name="serialNumber" />
+			<basic name="gponSerialNumber" />
+			<basic name="boxSerialNumber" />
+			<basic name="customerSerialNumber" />
+			<basic name="manufacturerSerialNumber" />
+			<basic name="hardwareRevision" />
+			<basic name="softwareRevision" />
+			<basic name="macAddress" />
+			<basic name="partNumber" />
+			<basic name="specification" />
+			<basic name="factoryOut">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="purchaseOrderId" />
+			<basic name="warrantyFormId" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.DeviceExtModelImpl">
+		<attributes>
+			<id name="deviceExtId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modelName" />
+			<basic name="serialNumber" />
+			<basic name="gponSerialNumber" />
+			<basic name="boxSerialNumber" />
+			<basic name="customerSerialNumber" />
+			<basic name="manufacturerSerialNumber" />
+			<basic name="hardwareRevision" />
+			<basic name="softwareRevision" />
+			<basic name="macAddress" />
+			<basic name="partNumber" />
+			<basic name="specification" />
+			<basic name="factoryOut">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="status" />
+			<basic name="ostStatusChangedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="deviceExtOrderId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.DeviceExtHisModelImpl">
+		<attributes>
+			<id name="deviceExtId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modelName" />
+			<basic name="serialNumber" />
+			<basic name="gponSerialNumber" />
+			<basic name="boxSerialNumber" />
+			<basic name="customerSerialNumber" />
+			<basic name="manufacturerSerialNumber" />
+			<basic name="hardwareRevision" />
+			<basic name="softwareRevision" />
+			<basic name="macAddress" />
+			<basic name="partNumber" />
+			<basic name="specification" />
+			<basic name="factoryOut">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="status" />
+			<basic name="ostStatusChangedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="deviceExtOrderId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.DeviceExtOrderModelImpl">
+		<attributes>
+			<id name="deviceExtOrderId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="deviceExtOrderNumber" />
+			<basic name="note" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.DeviceHisModelImpl">
+		<attributes>
+			<id name="deviceId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modelName" />
+			<basic name="serialNumber" />
+			<basic name="gponSerialNumber" />
+			<basic name="boxSerialNumber" />
+			<basic name="customerSerialNumber" />
+			<basic name="manufacturerSerialNumber" />
+			<basic name="hardwareRevision" />
+			<basic name="softwareRevision" />
+			<basic name="macAddress" />
+			<basic name="partNumber" />
+			<basic name="specification" />
+			<basic name="factoryOut">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="purchaseOrderId" />
+			<basic name="warrantyFormId" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.PartnerModelImpl">
+		<attributes>
+			<id name="partnerId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="partnerCode" />
+			<basic name="partnerName" />
+			<basic name="inCharge" />
+			<basic name="email" />
+			<basic name="phone" />
+			<basic name="address" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.PurchaseOrderModelImpl">
+		<attributes>
+			<id name="purchaseOrderId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="customerId" />
+			<basic name="signDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="warrantyStartDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="warrantyEndDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="purchaseOrderNumber" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.RmaReplacementModelImpl">
+		<id-class class="com.dasannetworks.vn.sb.service.persistence.RmaReplacementPK" />
+		<attributes>
+			<id name="rmaRequestId" />
+			<id name="replacedNumber" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.RmaRequestModelImpl">
+		<attributes>
+			<id name="rmaRequestId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="groupId" />
+			<basic name="rmaRequestNumber" />
+			<basic name="customerId" />
+			<basic name="cusInCharge" />
+			<basic name="cusEmail" />
+			<basic name="cusPhone" />
+			<basic name="cusAddress" />
+			<basic name="creatingEstReturnDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="creatingAssignedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="creatingNote" />
+			<basic name="creatingImportedFileName" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.RmaRequestDeviceModelImpl">
+		<id-class class="com.dasannetworks.vn.sb.service.persistence.RmaRequestDevicePK" />
+		<attributes>
+			<id name="rmaRequestId" />
+			<id name="deviceId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="originalSerialNumber" />
+			<basic name="faultyDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="faultyNote" />
+			<basic name="action" />
+			<basic name="partnerId" />
+			<basic name="partnerInCharge" />
+			<basic name="partnerEmail" />
+			<basic name="partnerPhone" />
+			<basic name="partnerAddress" />
+			<basic name="sendingEstReturnDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="sendingReturnedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="sendingAssignedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="sendingNote" />
+			<basic name="receivingReturnedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="receivingNote" />
+			<basic name="returningReturnedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="returningNote" />
+			<basic name="duplicatedRmaRequestId" />
+			<basic name="deniedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="deniedNote" />
+			<basic name="replacedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="replacedNote" />
+			<basic name="replacedNumber" />
+			<basic name="replacedOldDeviceId" />
+			<basic name="replacedOldDeviceExtId" />
+			<basic name="replacedNewDeviceId" />
+			<basic name="replacedNewDeviceExtId" />
+			<basic name="oldStatus" />
+			<basic name="status" />
+			<basic name="statusByUserId" />
+			<basic name="statusDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="statusByUserUuid" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dasannetworks.vn.sb.model.impl.WarrantyFormModelImpl">
+		<attributes>
+			<id name="warrantyFormId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="agentCode" />
+			<basic name="warrantyStartDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="warrantyEndDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="originalSerialNumber" />
+			<basic name="hisSerialNumbers" />
+			<basic name="latestSerialNumber" />
+			<basic name="remark" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.dasannetworks.vn.sb.model.impl.CustomerImpl" name="Customer">
+		<table name="tms_Customer" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.DeviceImpl" name="Device">
+		<table name="tms_Device" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.DeviceExtImpl" name="DeviceExt">
+		<table name="tms_DeviceExt" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.DeviceExtHisImpl" name="DeviceExtHis">
+		<table name="tms_DeviceExtHis" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.DeviceExtOrderImpl" name="DeviceExtOrder">
+		<table name="tms_DeviceExtOrder" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.DeviceHisImpl" name="DeviceHis">
+		<table name="tms_DeviceHis" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.PartnerImpl" name="Partner">
+		<table name="tms_Partner" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.PurchaseOrderImpl" name="PurchaseOrder">
+		<table name="tms_PurchaseOrder" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.RmaReplacementImpl" name="RmaReplacement">
+		<table name="tms_RmaReplacement" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.RmaRequestImpl" name="RmaRequest">
+		<table name="tms_RmaRequest" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.RmaRequestDeviceImpl" name="RmaRequestDevice">
+		<table name="tms_RmaRequestDevice" />
+		<attributes />
+	</entity>
+	<entity class="com.dasannetworks.vn.sb.model.impl.WarrantyFormImpl" name="WarrantyForm">
+		<table name="tms_WarrantyForm" />
+		<attributes />
+	</entity>
+</entity-mappings>

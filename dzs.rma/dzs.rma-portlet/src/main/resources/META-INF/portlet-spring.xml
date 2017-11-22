@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.dasannetworks.vn.sb.service.CustomerLocalService" class="com.dasannetworks.vn.sb.service.impl.CustomerLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.CustomerPersistence" class="com.dasannetworks.vn.sb.service.persistence.CustomerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceLocalService" class="com.dasannetworks.vn.sb.service.impl.DeviceLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceService" class="com.dasannetworks.vn.sb.service.impl.DeviceServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.DevicePersistence" class="com.dasannetworks.vn.sb.service.persistence.DevicePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.DeviceFinder" class="com.dasannetworks.vn.sb.service.persistence.DeviceFinderImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceExtLocalService" class="com.dasannetworks.vn.sb.service.impl.DeviceExtLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.DeviceExtPersistence" class="com.dasannetworks.vn.sb.service.persistence.DeviceExtPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceExtHisLocalService" class="com.dasannetworks.vn.sb.service.impl.DeviceExtHisLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.DeviceExtHisPersistence" class="com.dasannetworks.vn.sb.service.persistence.DeviceExtHisPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceExtOrderLocalService" class="com.dasannetworks.vn.sb.service.impl.DeviceExtOrderLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.DeviceExtOrderPersistence" class="com.dasannetworks.vn.sb.service.persistence.DeviceExtOrderPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.DeviceHisLocalService" class="com.dasannetworks.vn.sb.service.impl.DeviceHisLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.DeviceHisPersistence" class="com.dasannetworks.vn.sb.service.persistence.DeviceHisPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.PartnerLocalService" class="com.dasannetworks.vn.sb.service.impl.PartnerLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.PartnerPersistence" class="com.dasannetworks.vn.sb.service.persistence.PartnerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.PurchaseOrderLocalService" class="com.dasannetworks.vn.sb.service.impl.PurchaseOrderLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.PurchaseOrderPersistence" class="com.dasannetworks.vn.sb.service.persistence.PurchaseOrderPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.RmaReplacementLocalService" class="com.dasannetworks.vn.sb.service.impl.RmaReplacementLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.RmaReplacementPersistence" class="com.dasannetworks.vn.sb.service.persistence.RmaReplacementPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.RmaRequestLocalService" class="com.dasannetworks.vn.sb.service.impl.RmaRequestLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.RmaRequestPersistence" class="com.dasannetworks.vn.sb.service.persistence.RmaRequestPersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.RmaRequestDeviceLocalService" class="com.dasannetworks.vn.sb.service.impl.RmaRequestDeviceLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.RmaRequestDevicePersistence" class="com.dasannetworks.vn.sb.service.persistence.RmaRequestDevicePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dasannetworks.vn.sb.service.WarrantyFormLocalService" class="com.dasannetworks.vn.sb.service.impl.WarrantyFormLocalServiceImpl" />
+	<bean id="com.dasannetworks.vn.sb.service.persistence.WarrantyFormPersistence" class="com.dasannetworks.vn.sb.service.persistence.WarrantyFormPersistenceImpl" parent="basePersistence" />
+</beans>
